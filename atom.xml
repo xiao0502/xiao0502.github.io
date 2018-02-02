@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>FeXiao&#39;s Blog</title>
+  
+  <subtitle>Fe Immortal</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2018-02-02T07:28:18.667Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>FeXiao</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>找个地儿，写点东西</title>
+    <link href="http://yoursite.com/2018/02/02/firstArticle/"/>
+    <id>http://yoursite.com/2018/02/02/firstArticle/</id>
+    <published>2018-02-02T07:28:18.666Z</published>
+    <updated>2018-02-02T07:28:18.667Z</updated>
+    
+    <content type="html"><![CDATA[<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一直想找个地儿好好写点东西，之前买过域名和服务器，准备轰轰烈烈的好好弄个个站搞点事情，无奈设计排版编辑等一系列老大难问题摆在面前，一直没时间去好好落到实地。过关将至，得益于github个站、hexo静态站点生成器、next主题等一系列的智能化工具的帮助之下，个站算是简单的成了，有个地儿好好记录记录，吐槽吐槽，抒发抒发。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;一直想找个地儿好好写点东西，之前买过域名和服务器，准备轰轰烈烈的好好弄个个站搞点事情，无奈设计排版编辑等一系列老大难问题摆在面前，一直没时间去好好落到实地。过关将至，得益于github个站、hexo静态
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
