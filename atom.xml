@@ -5,9 +5,9 @@
   <subtitle>Fe Immortal</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
-  <updated>2018-02-02T07:28:18.667Z</updated>
-  <id>http://yoursite.com/</id>
+  <link href="https://xiao0502.github.io/"/>
+  <updated>2018-02-02T08:13:53.363Z</updated>
+  <id>https://xiao0502.github.io/</id>
   
   <author>
     <name>FeXiao</name>
@@ -18,22 +18,50 @@
   
   <entry>
     <title>找个地儿，写点东西</title>
-    <link href="http://yoursite.com/2018/02/02/firstArticle/"/>
-    <id>http://yoursite.com/2018/02/02/firstArticle/</id>
-    <published>2018-02-02T07:28:18.666Z</published>
-    <updated>2018-02-02T07:28:18.667Z</updated>
+    <link href="https://xiao0502.github.io/2018/02/02/firstArticle/"/>
+    <id>https://xiao0502.github.io/2018/02/02/firstArticle/</id>
+    <published>2018-02-02T08:13:53.363Z</published>
+    <updated>2018-02-02T08:13:53.363Z</updated>
     
-    <content type="html"><![CDATA[<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一直想找个地儿好好写点东西，之前买过域名和服务器，准备轰轰烈烈的好好弄个个站搞点事情，无奈设计排版编辑等一系列老大难问题摆在面前，一直没时间去好好落到实地。过关将至，得益于github个站、hexo静态站点生成器、next主题等一系列的智能化工具的帮助之下，个站算是简单的成了，有个地儿好好记录记录，吐槽吐槽，抒发抒发。</p>]]></content>
+    <content type="html"><![CDATA[<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一直想找个地儿好好写点东西，之前买过域名和服务器，准备好好弄个个站搞点事情，无奈设计排版编辑等一系列老大难问题摆在面前，一直没时间去好好落到实地。年关将至，这一年收货颇多，终于抽点时间出来，得益于<code>github个站</code>、<code>hexo静态站点生成器</code>、<code>next主题</code>等一系列的智能化工具的帮助之下，个站算是简单的成了，有个地儿好好记录记录，吐槽吐槽，抒发抒发。</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;一直想找个地儿好好写点东西，之前买过域名和服务器，准备轰轰烈烈的好好弄个个站搞点事情，无奈设计排版编辑等一系列老大难问题摆在面前，一直没时间去好好落到实地。过关将至，得益于github个站、hexo静态
+        &lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;一直想找个地儿好好写点东西，之前买过域名和服务器，准备好好弄个个站搞点事情，无奈设计排版编辑等一系列老大难问题摆在面前，一直没时间去好好落到实地。年关将至，这一年收货颇多，终于抽点时间出来，得益于&lt;co
       
     
     </summary>
     
+      <category term="开篇" scheme="https://xiao0502.github.io/categories/%E5%BC%80%E7%AF%87/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>hexo建站主题—next</title>
+    <link href="https://xiao0502.github.io/2018/02/02/buildStation/"/>
+    <id>https://xiao0502.github.io/2018/02/02/buildStation/</id>
+    <published>2018-02-02T07:40:09.000Z</published>
+    <updated>2018-02-02T07:55:52.506Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>关于 <code>hexo</code> 建站主题 <code>next</code> 的个性化技巧，随便百度谷歌没有上百也有大几十篇，再继续介绍next的个性化技巧，就显得有点无趣了。这里主要给大家分享一个已经配置好的了next主题文件和如何使用的说明，毕竟大多数人利用github建立个站都是为了写点东西。</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;关于 &lt;code&gt;hexo&lt;/code&gt; 建站主题 &lt;code&gt;next&lt;/code&gt; 的个性化技巧，随便百度谷歌没有上百也有大几十篇，再继续介绍next的个性化技巧，就显得有点无趣了。这里主要给大家分享一个已经配置好的了next主题文件和如何使用
+      
+    
+    </summary>
+    
+      <category term="next个性化" scheme="https://xiao0502.github.io/categories/next%E4%B8%AA%E6%80%A7%E5%8C%96/"/>
+    
+    
+      <category term="next" scheme="https://xiao0502.github.io/tags/next/"/>
     
   </entry>
   
