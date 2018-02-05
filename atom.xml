@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xiao0502.github.io/"/>
-  <updated>2018-02-04T14:27:06.238Z</updated>
+  <updated>2018-02-04T14:28:23.274Z</updated>
   <id>https://xiao0502.github.io/</id>
   
   <author>
@@ -20,16 +20,16 @@
     <title>找个地儿，写点东西</title>
     <link href="https://xiao0502.github.io/2018/02/04/firstArticle/"/>
     <id>https://xiao0502.github.io/2018/02/04/firstArticle/</id>
-    <published>2018-02-04T14:27:06.238Z</published>
-    <updated>2018-02-04T14:27:06.238Z</updated>
+    <published>2018-02-04T14:28:23.273Z</published>
+    <updated>2018-02-04T14:28:23.274Z</updated>
     
-    <content type="html"><![CDATA[<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一直想找个地儿好好写点东西，之前买过域名和服务器，准备好好弄个个站搞点事情，无奈设计排版编辑等一系列老大难问题摆在面前，一直没时间去好好落到实地。年关将至，这一年感触多收获也有点，抽点时间出来，在<code>github个站</code>、<code>hexo静态站点生成器</code>、<code>next主题</code>等一系列的智能化工具的帮助之下，个站算是简单的成了，有个地儿好好记录记录，吐槽吐槽，抒发抒发。</p>]]></content>
+    <content type="html"><![CDATA[<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一直想找个地儿好好写点东西，之前买过域名和服务器，准备好好弄个个站搞点事情，无奈设计排版编辑等一系列老大难问题摆在面前，一直没时间去好好落到实地。年关将至，这一年感触多,收获也有点，抽点时间出来，在<code>github个站</code>、<code>hexo静态站点生成器</code>、<code>next主题</code>等一系列的智能化工具的帮助之下，个站算是简单的成了，有个地儿好好记录记录，吐槽吐槽，抒发抒发。</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;一直想找个地儿好好写点东西，之前买过域名和服务器，准备好好弄个个站搞点事情，无奈设计排版编辑等一系列老大难问题摆在面前，一直没时间去好好落到实地。年关将至，这一年感触多收获也有点，抽点时间出来，在&lt;co
+        &lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;一直想找个地儿好好写点东西，之前买过域名和服务器，准备好好弄个个站搞点事情，无奈设计排版编辑等一系列老大难问题摆在面前，一直没时间去好好落到实地。年关将至，这一年感触多,收获也有点，抽点时间出来，在&lt;c
       
     
     </summary>
@@ -40,20 +40,20 @@
   </entry>
   
   <entry>
-    <title>hexo建站主题—next</title>
+    <title>十分钟建站利器—github+hexo+next</title>
     <link href="https://xiao0502.github.io/2018/02/02/buildStation/"/>
     <id>https://xiao0502.github.io/2018/02/02/buildStation/</id>
     <published>2018-02-02T07:40:09.000Z</published>
-    <updated>2018-02-02T07:55:52.506Z</updated>
+    <updated>2018-02-05T02:28:04.657Z</updated>
     
-    <content type="html"><![CDATA[<blockquote><p>关于 <code>hexo</code> 建站主题 <code>next</code> 的个性化技巧，随便百度谷歌没有上百也有大几十篇，再继续介绍next的个性化技巧，就显得有点无趣了。这里主要给大家分享一个已经配置好的了next主题文件和如何使用的说明，毕竟大多数人利用github建立个站都是为了写点东西。</p></blockquote>]]></content>
+    <content type="html"><![CDATA[<blockquote><p> 关于 <code>hexo</code> 建站主题 <code>next</code> 的个性化技巧，随便百度谷歌没有上百也有大几十篇，<br>再继续介绍next的个性化技巧，就显得有点无趣了。这里主要给大家分享一个已经配置好的<br>了next主题文件和如何使用的说明，毕竟大多数人利用github建立个站都是为了<code>写点东西</code>。</p></blockquote><h4 id="新建github个站"><a href="#新建github个站" class="headerlink" title="新建github个站"></a>新建github个站</h4><p>注册github账号后，新建一个包含与账户名相同的仓库，如下：</p><p><img class="demoImg" src="http://p3idd1hk8.bkt.clouddn.com/store.png"></p><p>建好仓库后，可以用仓库名字去访问自己的 <code>github个站</code> ，可以随便丢个index.html进去，<br>就能看到自己的主页了。</p><h4 id="hexo模板建站步骤"><a href="#hexo模板建站步骤" class="headerlink" title="hexo模板建站步骤"></a>hexo模板建站步骤</h4><ol><li>全局安装hexo-cli脚手架<br><code>npm install hexo-cli -g</code></li><li>初始化建站模板<br><code>hexo init yourBlogName</code></li><li><p>进入项目并安装依赖<br><code>cd yourBlogName &amp;&amp; npm install</code></p><p> 新建完成后，会生成如下目录：</p><pre><code>├── _config.yml // 项目配置文件├── package.json├── scaffolds├── source // 开发目录|   └── _posts└── themes // 主题目录</code></pre></li></ol><p>hexo主要命令行介绍</p><p>清除缓存：<code>hexo clean</code><br>代码编译：<code>hexo g</code><br>代码开发：<code>hexo s</code><br>发布上线：<code>hexo d</code></p><h4 id="下载next主题并修改配置文件"><a href="#下载next主题并修改配置文件" class="headerlink" title="下载next主题并修改配置文件"></a>下载next主题并修改配置文件</h4><p>我根据自己的喜欢简单，对hexo的next主题做了些基础的修改，下载地址：<a href="http://p3idd1hk8.bkt.clouddn.com/next.zip" target="_blank" rel="noopener">next主题下载</a><br>hexo建站后默认的主题是 <code>landscape</code>，将下载后的文件解压后，放在themes文件夹，<br>修改配置文件 <code>_config.yml</code> 如下几点：</p><pre><code>1. 修改首页默认地址    url: https://xiao0502.github.io/ 2. git代码上传配置    deploy:      type: git      repo: https://github.com/xiao0502/xiao0502.github.io.git       branch: master3. 主题换成next    theme: next </code></pre><h4 id="上线三部曲"><a href="#上线三部曲" class="headerlink" title="上线三部曲"></a>上线三部曲</h4><p>上线三部曲， <code>hexo clean</code>  <code>hexo g</code>  <code>hexo d</code> , 搞定！</p>]]></content>
     
     <summary type="html">
     
       
       
         &lt;blockquote&gt;
-&lt;p&gt;关于 &lt;code&gt;hexo&lt;/code&gt; 建站主题 &lt;code&gt;next&lt;/code&gt; 的个性化技巧，随便百度谷歌没有上百也有大几十篇，再继续介绍next的个性化技巧，就显得有点无趣了。这里主要给大家分享一个已经配置好的了next主题文件和如何使用
+&lt;p&gt; 关于 &lt;code&gt;hexo&lt;/code&gt; 建站主题 &lt;code&gt;next&lt;/code&gt; 的个性化技巧，随便百度谷歌没有上百也有大几十篇，&lt;br&gt;再继续介绍next的个性化技巧，就显得有点无趣了。这里主要给大家分享一个已经配置好的&lt;br&gt;了next
       
     
     </summary>
