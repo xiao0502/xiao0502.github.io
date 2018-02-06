@@ -3,9 +3,66 @@
   
     
     <entry>
-      <title><![CDATA[前端面试html篇]]></title>
-      <url>/2018/02/05/interviewForHtml/</url>
-      <content type="html"><![CDATA[<h3 id="网页从开始请求到最终显示的完整过程"><a href="#网页从开始请求到最终显示的完整过程" class="headerlink" title="网页从开始请求到最终显示的完整过程"></a>网页从开始请求到最终显示的完整过程</h3><blockquote>
+      <title><![CDATA[初窥浏览器渲染过程和原理]]></title>
+      <url>/2018/02/06/bowserPaint/</url>
+      <content type="html"><![CDATA[<blockquote>
+<p>了解浏览器的渲染过程和原理，有利于我们前端人员实现一些项目的具体优化方案，例如首屏渲染、按需加载等等；</p>
+</blockquote>
+<p>上一张图，先看为敬！</p>
+<p><img class="demoImg" src="http://p3idd1hk8.bkt.clouddn.com/renderTree.jpg"></p>
+<p>首先了解一个词，<code>关键渲染路径</code>，即与当前用户操作有关的内容，<br>最直接的体现就是<code>首屏渲染</code>。了解浏览器的渲染过程，<br>大部分就是为了优化关键渲染路径，避免长时间的白屏，提升用户体验；</p>
+<p>上个知识点《网页从开始请求到最终显示的完整过程》中说到过浏览器请求加载渲染一个页面的基本过程，精简下来，就是五个步骤：</p>
+<pre><code>1. DNS查询
+2. TCP连接
+3. HTTP请求
+4. 服务器响应
+5. 浏览器渲染
+</code></pre><p>这个知识点主要说第五个步骤，<code>浏览器渲染</code>，细分下来，也可以是补个步骤：</p>
+<pre><code>1. 处理HTML构建DOM树
+2. 处理CSS构建CSSOM树
+3. 将DOM和CSSOM合并成一个render（渲染树）
+4. 将render布局，计算每个节点的几何信息（Layout）
+5. 将节点绘制在屏幕上（Paint）
+</code></pre><p>要知道，上述的五个步骤不是一次性顺序进行，一旦DOM和CSSOM被修改，<br>就会重新计算并渲染（Repaint），<br>而在实际开发中，CSS和JS都是会经常修改DOM和CSSOM的。</p>
+<pre><code>CSS和JS都会阻塞DOM加载，一旦发生阻塞，解析器会停止构建DOM。
+CSS阻塞时，浏览器会延迟JS脚本执行和DOM构建，知道CSSOM构建完毕。
+JS阻塞时，DOM暂停构建，直至脚本执行完毕。
+</code></pre><p>所以在实际开发中，有<code>两个原则</code>：</p>
+<pre><code>1. CSS优先： CSS优先于JS资源
+2. JS尽量减少对DOM构建的影响
+</code></pre><p>这里对比下Repaint和Reflow,前者是元素的改变不影响布局，后者是布局被影响，渲染成本高</p>
+<p>有可能<code>触发Reflow的行为</code>：</p>
+<pre><code>1. 增删改DOM节点
+2. 增删class属性值
+3. 元素尺寸大小
+4. 文本内容大小
+5. 浏览器窗口改变大小或者拖动
+6. 动画效果
+7. 伪类
+</code></pre><p>在上述行为中，浏览器不是每次Reflow或者Repaint就立即执行，而是积累到一定时候，就会Reflow或者Repaint，<br>当然有些行为，比如改变浏览器窗口大小是立即执行Reflow或者Repaint的。</p>
+<p>说了上述些后，可以谈谈优化浏览器渲染过程的<code>具体实现</code>了。</p>
+<ol>
+<li>指定文档编码 <meta charset="utf-8"></li>
+<li>CSS放在 <code>&lt;head&gt;</code> 里面， js放在 <code>&lt;/body&gt;</code> 结束标签之前</li>
+<li>不要逐条修改CSS样式，提前定义好class样式，<code>对css进行操作</code></li>
+<li>CSS的引入利用 <code>媒体查询</code> ，接触对渲染的阻塞   </li>
+<li>JS的引入适当添加defer或者async,虽然都是 <code>异步加载</code> ，但是前者有序，后者无序</li>
+</ol>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> 浏览器渲染 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[网页从开始请求到最终显示的完整过程]]></title>
+      <url>/2018/02/05/urlResolve/</url>
+      <content type="html"><![CDATA[<blockquote>
 <p>从浏览器地址栏输入网址，到呈现我们想要的内容，可能只需要0.1秒钟甚至更短的时间，但是其中经历了什么呢？</p>
 </blockquote>
 <ol>
@@ -24,7 +81,8 @@
 一次：客户端向服务器发送连接请求报文；
 二次：服务器接受连接报文回复ACK报文，并为这次连接分配相关资源；
 三次：客户端接收到服务器的ACK报文，也向服务器发送报文，并分配资源；
-</code></pre><p>用通俗的话理解上面这段话的意思就是：</p>
+</code></pre><p><img class="demoImg" src="http://p3idd1hk8.bkt.clouddn.com/tcp-1.png"></p>
+<p>用通俗的话理解上面这段话的意思就是：</p>
 <p><code>张三</code> 和 <code>李四</code> 在街上碰面，张三问李四： “你吃了吗？”<br>李四要是听不懂张三的话不回答，或者回答的不是吃了没之类的问题，表示连接失败；</p>
 <p>李四回答张三： “吃了，你吃了吗？”<br>同样的，张三要是听不懂李四的话不回答，或者回答的不是吃了没之类的问题，连接失败；</p>
 <p>张三回答李四： “我也吃了，回头见哈~”<br>此时才算是张三和李四才可以畅聊，此时他们经过了 <code>三次握手询问</code> 。</p>
@@ -33,7 +91,8 @@
 二次：服务器发送一个ACK报文给客户端并告诉客户端，服务器收到中断连接请求，请客户端等待；
 三次：服务器发送FIN报文给客户端，并中断连接；
 四次：客户端想服务端发送ACK报文，等待2MSL后没有回复，证明服务端已中断，客户端再中断连接；
-</code></pre><p><code>ACK报文</code> : 确认标注； <code>FIN报文</code> ：结束标注；两者都是属于TCP传输控制协议中的几种状态；</p>
+</code></pre><p><img class="demoImg" src="http://p3idd1hk8.bkt.clouddn.com/tcp-2.png"></p>
+<p><code>ACK报文</code> : 确认标注； <code>FIN报文</code> ：结束标注；两者都是属于TCP传输控制协议中的几种状态；</p>
 <p>这里就可以简单的回答下关于TCP协议中的两个常见问题：</p>
 <ol>
 <li><p>为什么连接的时候是三次握手，关闭的时候却是四次握手？<br>握手时候，服务器收到客户端连接请求报文后，可以应答（ACK）后并同步（SYN），<br>但是中断连接则不行，数据传输是异步，所以服务器收到FIN报文后，不会立刻关闭，只能等数据传输完毕；</p>
@@ -41,16 +100,20 @@
 <li><p>为什么TIME_WAIT状态需要经过2MSL(最大报文段生存时间)才能返回到CLOSE状态？<br>客户端最后想服务器发送ACK报文后进入TIME_WAIT状态，经过2MSL，可以是本次连接内的所有报文段消失，下个新的链接的请求报文可以重新开始；</p>
 </li>
 </ol>
-<h3 id="初窥浏览器渲染过程"><a href="#初窥浏览器渲染过程" class="headerlink" title="初窥浏览器渲染过程"></a>初窥浏览器渲染过程</h3><blockquote>
-</blockquote>
 ]]></content>
       
         <categories>
             
-            <category> 前端面试 </category>
+            <category> html </category>
             
         </categories>
         
+        
+        <tags>
+            
+            <tag> URL到页面渲染 </tag>
+            
+        </tags>
         
     </entry>
     
@@ -75,10 +138,10 @@
       <content type="html"><![CDATA[<blockquote>
 <p> 关于 <code>hexo</code> 建站主题 <code>next</code> 的个性化技巧，随便百度谷歌没有上百也有大几十篇，<br>再继续介绍next的个性化技巧，就显得有点无趣了。这里主要给大家分享一个已经配置好的<br>了next主题文件和如何使用的说明，毕竟大多数人利用github建立个站都是为了<code>写点东西</code>。</p>
 </blockquote>
-<h3 id="新建github个站"><a href="#新建github个站" class="headerlink" title="新建github个站"></a>新建github个站</h3><p>注册github账号后，新建一个包含与账户名相同的仓库，如下：</p>
+<h2 id="新建github个站"><a href="#新建github个站" class="headerlink" title="新建github个站"></a>新建github个站</h2><p>注册github账号后，新建一个包含与账户名相同的仓库，如下：</p>
 <p><img class="demoImg" src="http://p3idd1hk8.bkt.clouddn.com/store.png"></p>
 <p>建好仓库后，可以用仓库名字去访问自己的 <code>github个站</code> ，可以随便丢个index.html进去，<br>就能看到自己的主页了。</p>
-<h3 id="hexo模板建站步骤"><a href="#hexo模板建站步骤" class="headerlink" title="hexo模板建站步骤"></a>hexo模板建站步骤</h3><ol>
+<h2 id="hexo模板建站步骤"><a href="#hexo模板建站步骤" class="headerlink" title="hexo模板建站步骤"></a>hexo模板建站步骤</h2><ol>
 <li>全局安装hexo-cli脚手架<br><code>npm install hexo-cli -g</code></li>
 <li>初始化建站模板<br><code>hexo init yourBlogName</code></li>
 <li><p>进入项目并安装依赖<br><code>cd yourBlogName &amp;&amp; npm install</code></p>
@@ -93,7 +156,7 @@
 </ol>
 <p>hexo主要命令行介绍</p>
 <p>清除缓存：<code>hexo clean</code><br>代码编译：<code>hexo g</code><br>代码开发：<code>hexo s</code><br>发布上线：<code>hexo d</code></p>
-<h3 id="下载next主题并修改配置文件"><a href="#下载next主题并修改配置文件" class="headerlink" title="下载next主题并修改配置文件"></a>下载next主题并修改配置文件</h3><p>我根据自己的喜欢简单，对hexo的next主题做了些基础的修改，下载地址：<a href="http://p3idd1hk8.bkt.clouddn.com/next.zip" target="_blank" rel="noopener">next主题下载</a><br>hexo建站后默认的主题是 <code>landscape</code>，将下载后的文件解压后，放在themes文件夹，<br>修改配置文件 <code>_config.yml</code> 如下几点：</p>
+<h2 id="下载next主题并修改配置文件"><a href="#下载next主题并修改配置文件" class="headerlink" title="下载next主题并修改配置文件"></a>下载next主题并修改配置文件</h2><p>我根据自己的喜欢简单，对hexo的next主题做了些基础的修改，下载地址：<a href="http://p3idd1hk8.bkt.clouddn.com/next.zip" target="_blank" rel="noopener">next主题下载</a><br>hexo建站后默认的主题是 <code>landscape</code>，将下载后的文件解压后，放在themes文件夹，<br>修改配置文件 <code>_config.yml</code> 如下几点：</p>
 <pre><code>1. 修改首页默认地址
     url: https://xiao0502.github.io/ 
 2. git代码上传配置
@@ -103,7 +166,7 @@
       branch: master
 3. 主题换成next
     theme: next 
-</code></pre><h3 id="上线三部曲"><a href="#上线三部曲" class="headerlink" title="上线三部曲"></a>上线三部曲</h3><p>上线三部曲， <code>hexo clean</code>  <code>hexo g</code>  <code>hexo d</code> , 搞定！</p>
+</code></pre><h2 id="上线三部曲"><a href="#上线三部曲" class="headerlink" title="上线三部曲"></a>上线三部曲</h2><p>上线三部曲， <code>hexo clean</code>  <code>hexo g</code>  <code>hexo d</code> , 搞定！</p>
 ]]></content>
       
         <categories>
