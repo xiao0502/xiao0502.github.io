@@ -163,6 +163,7 @@
   </style>
 </noscript>
 
+  <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.12.0/styles/atom-one-dark.min.css">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
@@ -286,6 +287,34 @@
 
       <h2 class="post-title">
         
+            <a class="post-title-link" href="/2018/02/06/bowserPaint/" itemprop="url">
+              
+                <span itemprop="name">初窥浏览器渲染过程和原理</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2018-02-06T12:12:42+08:00"
+              content="2018-02-06" >
+          02-06
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
             <a class="post-title-link" href="/2018/02/05/urlResolve/" itemprop="url">
               
                 <span itemprop="name">网页从开始请求到最终显示的完整过程</span>
@@ -360,7 +389,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -381,7 +410,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -402,7 +431,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -758,6 +787,25 @@
 <script>AV.initialize("7pI2ebl2tM7p1FJtn2UVgwHo-gzGzoHsz", "1WufB1MWLSYjhpAlqTaCDwvn");</script>
 
   
+  <script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+      <script type="text/javascript">
+        $(function() {
+          hljs.initHighlighting();
+          $('pre code').each(function() {
+            var lines = $(this).text().split('\n').length - 1;
+            var $numbering = $('<ul/>').addClass('pre-numbering');
+            $(this)
+              .addClass('has-numbering')
+              .parent()
+              .append($numbering);
+            for (i = 1; i <= lines; i++) {
+              $numbering.append($('<li/>'));
+            }
+          });
+        });
+
+      </script>
     <script type="text/javascript" src="/js/src/particle.js"></script>
+
 </body>
 </html>

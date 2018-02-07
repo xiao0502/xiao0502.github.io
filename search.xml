@@ -3,6 +3,130 @@
   
     
     <entry>
+      <title><![CDATA[react实现简单登录注册]]></title>
+      <url>/2018/02/07/reactAccount/</url>
+      <content type="html"><![CDATA[<blockquote>
+<p>此篇文章就react技术，实现下简单的H5的登陆注册，<br>进行下面操作时，默认已安装node(6.11.3)和npm()。</p>
+</blockquote>
+<h2 id="全局安装react官方推荐脚手架"><a href="#全局安装react官方推荐脚手架" class="headerlink" title="全局安装react官方推荐脚手架"></a>全局安装react官方推荐脚手架</h2><p><code>npm install create-react-app -g</code></p>
+<h2 id="新建一个react项目"><a href="#新建一个react项目" class="headerlink" title="新建一个react项目"></a>新建一个react项目</h2><p><code>create-react-app react-account</code></p>
+<h2 id="进入项目并运行"><a href="#进入项目并运行" class="headerlink" title="进入项目并运行"></a>进入项目并运行</h2><p><code>cd react-account &amp;&amp; npm start</code></p>
+<p>运行效果如下：</p>
+<p><img class="demoImg" src="http://p3idd1hk8.bkt.clouddn.com/react-start.png"></p>
+<p>至此，一个简单的 <code>react-demo</code> 就跑起来了。</p>
+<h2 id="删除官方脚手架src开发目录的代码，新建demo"><a href="#删除官方脚手架src开发目录的代码，新建demo" class="headerlink" title="删除官方脚手架src开发目录的代码，新建demo"></a>删除官方脚手架src开发目录的代码，新建demo</h2><pre><code>// index.js
+import React from &#39;react&#39;
+import ReactDOM from &#39;react-dom&#39;
+
+ReactDOM.render(
+    &lt;div&gt;demo&lt;/div&gt;,
+    document.getElementById(&#39;root&#39;)
+)
+</code></pre><h2 id="释放webpack配置"><a href="#释放webpack配置" class="headerlink" title="释放webpack配置"></a>释放webpack配置</h2><p><code>npm run eject</code></p>
+<h2 id="在src开发目录新建所需要的文件及文件夹"><a href="#在src开发目录新建所需要的文件及文件夹" class="headerlink" title="在src开发目录新建所需要的文件及文件夹"></a>在src开发目录新建所需要的文件及文件夹</h2><p><img class="demoImg" src="http://p3idd1hk8.bkt.clouddn.com/react-src-1.png"></p>
+<p>目录解释：</p>
+<pre><code>1. components： 存放各种木偶组件
+2. containers： 存放各种智能页面
+3. login： 存放登陆页面
+4. register： 存放注册页面
+</code></pre><h2 id="布置路由"><a href="#布置路由" class="headerlink" title="布置路由"></a>布置路由</h2><p><code>npm install react-router-dom -S</code></p>
+<pre><code>import {BrowserRouter as Router, Route} from &#39;react-router-dom&#39;
+
+import Login from &#39;./containers/login&#39;
+import Register from &#39;./containers/register&#39;
+
+ReactDOM.render(
+    &lt;Router&gt;
+        &lt;div&gt;
+            &lt;Route path=&#39;/&#39; component={Login}&gt;&lt;/Route&gt;
+            &lt;Route path=&#39;/login&#39; component={Login}&gt;&lt;/Route&gt;
+            &lt;Route path=&#39;/register&#39; component={Register}&gt;&lt;/Route&gt;
+        &lt;/div&gt;
+    &lt;/Router&gt;,
+    document.getElementById(&#39;root&#39;)
+)
+</code></pre><p>这样就可以实现简单的页面路由布置</p>
+<h2 id="利用UI框架antd-mobile快速搭建所需页面"><a href="#利用UI框架antd-mobile快速搭建所需页面" class="headerlink" title="利用UI框架antd-mobile快速搭建所需页面"></a>利用UI框架antd-mobile快速搭建所需页面</h2><p>安装UI框架 <code>npm install antd-mobile -S</code><br>安装UI框架按需加载插件 <code>npm install babel-plugin-import -S</code></p>
+<pre><code>// login/index.js
+import React, {Component} from &#39;react&#39;
+import {
+    List,
+    InputItem,
+    WingBlank,
+    WhiteSpace,
+    Button
+} from &#39;antd-mobile&#39;
+import Logo from &#39;../../components/logo&#39;
+import &#39;./login.css&#39;
+
+class Login extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            username: &#39;&#39;,
+            password: &#39;&#39;
+        }
+    }
+
+    render() {
+        return (
+            &lt;div className=&quot;page-login&quot;&gt;
+                &lt;Logo/&gt;
+                &lt;WhiteSpace&gt;&lt;/WhiteSpace&gt;
+                &lt;WhiteSpace&gt;&lt;/WhiteSpace&gt;
+                &lt;WhiteSpace&gt;&lt;/WhiteSpace&gt;
+                &lt;WhiteSpace&gt;&lt;/WhiteSpace&gt;
+                &lt;List&gt;
+
+                &lt;/List&gt;
+                &lt;WhiteSpace&gt;&lt;/WhiteSpace&gt;
+                &lt;WhiteSpace&gt;&lt;/WhiteSpace&gt;
+                &lt;WhiteSpace&gt;&lt;/WhiteSpace&gt;
+                &lt;WhiteSpace&gt;&lt;/WhiteSpace&gt;
+                &lt;WhiteSpace&gt;&lt;/WhiteSpace&gt;
+                &lt;WingBlank&gt;
+                    &lt;Button type=&quot;primary&quot;
+                            onClick={this.handleLogin.bind(this)}
+                    &gt;登录&lt;/Button&gt;
+                    &lt;WhiteSpace&gt;&lt;/WhiteSpace&gt;
+                    &lt;Button type=&quot;primary&quot;
+                            onClick={this.handleGoRegister.bind(this)}
+                    &gt;去注册&lt;/Button&gt;
+                &lt;/WingBlank&gt;
+            &lt;/div&gt;
+        )
+    }
+
+    // 去注册
+    handleGoRegister() {
+        this.props.history.push(&#39;/register&#39;)
+    }
+
+    // 登陆
+    handleLogin() {
+
+    }
+}
+
+export default Login
+</code></pre>]]></content>
+      
+        <categories>
+            
+            <category> react </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> react </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[初窥浏览器渲染过程和原理]]></title>
       <url>/2018/02/06/bowserPaint/</url>
       <content type="html"><![CDATA[<blockquote>
@@ -50,6 +174,12 @@ JS阻塞时，DOM暂停构建，直至脚本执行完毕。
 </ol>
 ]]></content>
       
+        <categories>
+            
+            <category> html </category>
+            
+        </categories>
+        
         
         <tags>
             

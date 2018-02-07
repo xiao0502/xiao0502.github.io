@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xiao0502.github.io/"/>
-  <updated>2018-02-06T04:39:30.569Z</updated>
+  <updated>2018-02-07T07:11:58.884Z</updated>
   <id>https://xiao0502.github.io/</id>
   
   <author>
@@ -17,11 +17,39 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>react实现简单登录注册</title>
+    <link href="https://xiao0502.github.io/2018/02/07/reactAccount/"/>
+    <id>https://xiao0502.github.io/2018/02/07/reactAccount/</id>
+    <published>2018-02-07T02:42:20.000Z</published>
+    <updated>2018-02-07T07:11:58.884Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>此篇文章就react技术，实现下简单的H5的登陆注册，<br>进行下面操作时，默认已安装node(6.11.3)和npm()。</p></blockquote><h2 id="全局安装react官方推荐脚手架"><a href="#全局安装react官方推荐脚手架" class="headerlink" title="全局安装react官方推荐脚手架"></a>全局安装react官方推荐脚手架</h2><p><code>npm install create-react-app -g</code></p><h2 id="新建一个react项目"><a href="#新建一个react项目" class="headerlink" title="新建一个react项目"></a>新建一个react项目</h2><p><code>create-react-app react-account</code></p><h2 id="进入项目并运行"><a href="#进入项目并运行" class="headerlink" title="进入项目并运行"></a>进入项目并运行</h2><p><code>cd react-account &amp;&amp; npm start</code></p><p>运行效果如下：</p><p><img class="demoImg" src="http://p3idd1hk8.bkt.clouddn.com/react-start.png"></p><p>至此，一个简单的 <code>react-demo</code> 就跑起来了。</p><h2 id="删除官方脚手架src开发目录的代码，新建demo"><a href="#删除官方脚手架src开发目录的代码，新建demo" class="headerlink" title="删除官方脚手架src开发目录的代码，新建demo"></a>删除官方脚手架src开发目录的代码，新建demo</h2><pre><code>// index.jsimport React from &#39;react&#39;import ReactDOM from &#39;react-dom&#39;ReactDOM.render(    &lt;div&gt;demo&lt;/div&gt;,    document.getElementById(&#39;root&#39;))</code></pre><h2 id="释放webpack配置"><a href="#释放webpack配置" class="headerlink" title="释放webpack配置"></a>释放webpack配置</h2><p><code>npm run eject</code></p><h2 id="在src开发目录新建所需要的文件及文件夹"><a href="#在src开发目录新建所需要的文件及文件夹" class="headerlink" title="在src开发目录新建所需要的文件及文件夹"></a>在src开发目录新建所需要的文件及文件夹</h2><p><img class="demoImg" src="http://p3idd1hk8.bkt.clouddn.com/react-src-1.png"></p><p>目录解释：</p><pre><code>1. components： 存放各种木偶组件2. containers： 存放各种智能页面3. login： 存放登陆页面4. register： 存放注册页面</code></pre><h2 id="布置路由"><a href="#布置路由" class="headerlink" title="布置路由"></a>布置路由</h2><p><code>npm install react-router-dom -S</code></p><pre><code>import {BrowserRouter as Router, Route} from &#39;react-router-dom&#39;import Login from &#39;./containers/login&#39;import Register from &#39;./containers/register&#39;ReactDOM.render(    &lt;Router&gt;        &lt;div&gt;            &lt;Route path=&#39;/&#39; component={Login}&gt;&lt;/Route&gt;            &lt;Route path=&#39;/login&#39; component={Login}&gt;&lt;/Route&gt;            &lt;Route path=&#39;/register&#39; component={Register}&gt;&lt;/Route&gt;        &lt;/div&gt;    &lt;/Router&gt;,    document.getElementById(&#39;root&#39;))</code></pre><p>这样就可以实现简单的页面路由布置</p><h2 id="利用UI框架antd-mobile快速搭建所需页面"><a href="#利用UI框架antd-mobile快速搭建所需页面" class="headerlink" title="利用UI框架antd-mobile快速搭建所需页面"></a>利用UI框架antd-mobile快速搭建所需页面</h2><p>安装UI框架 <code>npm install antd-mobile -S</code><br>安装UI框架按需加载插件 <code>npm install babel-plugin-import -S</code></p><pre><code>// login/index.jsimport React, {Component} from &#39;react&#39;import {    List,    InputItem,    WingBlank,    WhiteSpace,    Button} from &#39;antd-mobile&#39;import Logo from &#39;../../components/logo&#39;import &#39;./login.css&#39;class Login extends Component {    constructor(props) {        super(props);        this.state = {            username: &#39;&#39;,            password: &#39;&#39;        }    }    render() {        return (            &lt;div className=&quot;page-login&quot;&gt;                &lt;Logo/&gt;                &lt;WhiteSpace&gt;&lt;/WhiteSpace&gt;                &lt;WhiteSpace&gt;&lt;/WhiteSpace&gt;                &lt;WhiteSpace&gt;&lt;/WhiteSpace&gt;                &lt;WhiteSpace&gt;&lt;/WhiteSpace&gt;                &lt;List&gt;                &lt;/List&gt;                &lt;WhiteSpace&gt;&lt;/WhiteSpace&gt;                &lt;WhiteSpace&gt;&lt;/WhiteSpace&gt;                &lt;WhiteSpace&gt;&lt;/WhiteSpace&gt;                &lt;WhiteSpace&gt;&lt;/WhiteSpace&gt;                &lt;WhiteSpace&gt;&lt;/WhiteSpace&gt;                &lt;WingBlank&gt;                    &lt;Button type=&quot;primary&quot;                            onClick={this.handleLogin.bind(this)}                    &gt;登录&lt;/Button&gt;                    &lt;WhiteSpace&gt;&lt;/WhiteSpace&gt;                    &lt;Button type=&quot;primary&quot;                            onClick={this.handleGoRegister.bind(this)}                    &gt;去注册&lt;/Button&gt;                &lt;/WingBlank&gt;            &lt;/div&gt;        )    }    // 去注册    handleGoRegister() {        this.props.history.push(&#39;/register&#39;)    }    // 登陆    handleLogin() {    }}export default Login</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;此篇文章就react技术，实现下简单的H5的登陆注册，&lt;br&gt;进行下面操作时，默认已安装node(6.11.3)和npm()。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;全局安装react官方推荐脚手架&quot;&gt;&lt;a href=&quot;#全局安装re
+      
+    
+    </summary>
+    
+      <category term="react" scheme="https://xiao0502.github.io/categories/react/"/>
+    
+    
+      <category term="react" scheme="https://xiao0502.github.io/tags/react/"/>
+    
+  </entry>
+  
+  <entry>
     <title>初窥浏览器渲染过程和原理</title>
     <link href="https://xiao0502.github.io/2018/02/06/bowserPaint/"/>
     <id>https://xiao0502.github.io/2018/02/06/bowserPaint/</id>
     <published>2018-02-06T04:12:42.000Z</published>
-    <updated>2018-02-06T04:39:30.569Z</updated>
+    <updated>2018-02-06T04:49:54.605Z</updated>
     
     <content type="html"><![CDATA[<blockquote><p>了解浏览器的渲染过程和原理，有利于我们前端人员实现一些项目的具体优化方案，例如首屏渲染、按需加载等等；</p></blockquote><p>上一张图，先看为敬！</p><p><img class="demoImg" src="http://p3idd1hk8.bkt.clouddn.com/renderTree.jpg"></p><p>首先了解一个词，<code>关键渲染路径</code>，即与当前用户操作有关的内容，<br>最直接的体现就是<code>首屏渲染</code>。了解浏览器的渲染过程，<br>大部分就是为了优化关键渲染路径，避免长时间的白屏，提升用户体验；</p><p>上个知识点《网页从开始请求到最终显示的完整过程》中说到过浏览器请求加载渲染一个页面的基本过程，精简下来，就是五个步骤：</p><pre><code>1. DNS查询2. TCP连接3. HTTP请求4. 服务器响应5. 浏览器渲染</code></pre><p>这个知识点主要说第五个步骤，<code>浏览器渲染</code>，细分下来，也可以是补个步骤：</p><pre><code>1. 处理HTML构建DOM树2. 处理CSS构建CSSOM树3. 将DOM和CSSOM合并成一个render（渲染树）4. 将render布局，计算每个节点的几何信息（Layout）5. 将节点绘制在屏幕上（Paint）</code></pre><p>要知道，上述的五个步骤不是一次性顺序进行，一旦DOM和CSSOM被修改，<br>就会重新计算并渲染（Repaint），<br>而在实际开发中，CSS和JS都是会经常修改DOM和CSSOM的。</p><pre><code>CSS和JS都会阻塞DOM加载，一旦发生阻塞，解析器会停止构建DOM。CSS阻塞时，浏览器会延迟JS脚本执行和DOM构建，知道CSSOM构建完毕。JS阻塞时，DOM暂停构建，直至脚本执行完毕。</code></pre><p>所以在实际开发中，有<code>两个原则</code>：</p><pre><code>1. CSS优先： CSS优先于JS资源2. JS尽量减少对DOM构建的影响</code></pre><p>这里对比下Repaint和Reflow,前者是元素的改变不影响布局，后者是布局被影响，渲染成本高</p><p>有可能<code>触发Reflow的行为</code>：</p><pre><code>1. 增删改DOM节点2. 增删class属性值3. 元素尺寸大小4. 文本内容大小5. 浏览器窗口改变大小或者拖动6. 动画效果7. 伪类</code></pre><p>在上述行为中，浏览器不是每次Reflow或者Repaint就立即执行，而是积累到一定时候，就会Reflow或者Repaint，<br>当然有些行为，比如改变浏览器窗口大小是立即执行Reflow或者Repaint的。</p><p>说了上述些后，可以谈谈优化浏览器渲染过程的<code>具体实现</code>了。</p><ol><li>指定文档编码 <meta charset="utf-8"></li><li>CSS放在 <code>&lt;head&gt;</code> 里面， js放在 <code>&lt;/body&gt;</code> 结束标签之前</li><li>不要逐条修改CSS样式，提前定义好class样式，<code>对css进行操作</code></li><li>CSS的引入利用 <code>媒体查询</code> ，接触对渲染的阻塞   </li><li>JS的引入适当添加defer或者async,虽然都是 <code>异步加载</code> ，但是前者有序，后者无序</li></ol>]]></content>
     
@@ -37,6 +65,8 @@
       
     
     </summary>
+    
+      <category term="html" scheme="https://xiao0502.github.io/categories/html/"/>
     
     
       <category term="浏览器渲染" scheme="https://xiao0502.github.io/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93/"/>
@@ -101,7 +131,7 @@
     <link href="https://xiao0502.github.io/2018/02/02/buildStation/"/>
     <id>https://xiao0502.github.io/2018/02/02/buildStation/</id>
     <published>2018-02-02T07:40:09.000Z</published>
-    <updated>2018-02-06T02:26:01.255Z</updated>
+    <updated>2018-02-07T03:05:38.889Z</updated>
     
     <content type="html"><![CDATA[<blockquote><p> 关于 <code>hexo</code> 建站主题 <code>next</code> 的个性化技巧，随便百度谷歌没有上百也有大几十篇，<br>再继续介绍next的个性化技巧，就显得有点无趣了。这里主要给大家分享一个已经配置好的<br>了next主题文件和如何使用的说明，毕竟大多数人利用github建立个站都是为了<code>写点东西</code>。</p></blockquote><h2 id="新建github个站"><a href="#新建github个站" class="headerlink" title="新建github个站"></a>新建github个站</h2><p>注册github账号后，新建一个包含与账户名相同的仓库，如下：</p><p><img class="demoImg" src="http://p3idd1hk8.bkt.clouddn.com/store.png"></p><p>建好仓库后，可以用仓库名字去访问自己的 <code>github个站</code> ，可以随便丢个index.html进去，<br>就能看到自己的主页了。</p><h2 id="hexo模板建站步骤"><a href="#hexo模板建站步骤" class="headerlink" title="hexo模板建站步骤"></a>hexo模板建站步骤</h2><ol><li>全局安装hexo-cli脚手架<br><code>npm install hexo-cli -g</code></li><li>初始化建站模板<br><code>hexo init yourBlogName</code></li><li><p>进入项目并安装依赖<br><code>cd yourBlogName &amp;&amp; npm install</code></p><p> 新建完成后，会生成如下目录：</p><pre><code>├── _config.yml // 项目配置文件├── package.json├── scaffolds├── source // 开发目录|   └── _posts└── themes // 主题目录</code></pre></li></ol><p>hexo主要命令行介绍</p><p>清除缓存：<code>hexo clean</code><br>代码编译：<code>hexo g</code><br>代码开发：<code>hexo s</code><br>发布上线：<code>hexo d</code></p><h2 id="下载next主题并修改配置文件"><a href="#下载next主题并修改配置文件" class="headerlink" title="下载next主题并修改配置文件"></a>下载next主题并修改配置文件</h2><p>我根据自己的喜欢简单，对hexo的next主题做了些基础的修改，下载地址：<a href="http://p3idd1hk8.bkt.clouddn.com/next.zip" target="_blank" rel="noopener">next主题下载</a><br>hexo建站后默认的主题是 <code>landscape</code>，将下载后的文件解压后，放在themes文件夹，<br>修改配置文件 <code>_config.yml</code> 如下几点：</p><pre><code>1. 修改首页默认地址    url: https://xiao0502.github.io/ 2. git代码上传配置    deploy:      type: git      repo: https://github.com/xiao0502/xiao0502.github.io.git       branch: master3. 主题换成next    theme: next </code></pre><h2 id="上线三部曲"><a href="#上线三部曲" class="headerlink" title="上线三部曲"></a>上线三部曲</h2><p>上线三部曲， <code>hexo clean</code>  <code>hexo g</code>  <code>hexo d</code> , 搞定！</p>]]></content>
     

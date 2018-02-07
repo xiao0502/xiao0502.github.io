@@ -95,23 +95,24 @@
 
 
   
-  <meta name="keywords" content="浏览器渲染," />
+  <meta name="keywords" content="react," />
 
 
-<meta name="description" content="了解浏览器的渲染过程和原理，有利于我们前端人员实现一些项目的具体优化方案，例如首屏渲染、按需加载等等；  上一张图，先看为敬！  首先了解一个词，关键渲染路径，即与当前用户操作有关的内容，最直接的体现就是首屏渲染。了解浏览器的渲染过程，大部分就是为了优化关键渲染路径，避免长时间的白屏，提升用户体验； 上个知识点《网页从开始请求到最终显示的完整过程》中说到过浏览器请求加载渲染一个页面的基本过程，精">
-<meta name="keywords" content="浏览器渲染">
+<meta name="description" content="此篇文章就react技术，实现下简单的H5的登陆注册，进行下面操作时，默认已安装node(6.11.3)和npm()。  全局安装react官方推荐脚手架npm install create-react-app -g 新建一个react项目create-react-app react-account 进入项目并运行cd react-account &amp;amp;&amp;amp; npm start 运行效">
+<meta name="keywords" content="react">
 <meta property="og:type" content="article">
-<meta property="og:title" content="初窥浏览器渲染过程和原理">
-<meta property="og:url" content="https://xiao0502.github.io/2018/02/06/bowserPaint/index.html">
+<meta property="og:title" content="react实现简单登录注册">
+<meta property="og:url" content="https://xiao0502.github.io/2018/02/07/reactAccount/index.html">
 <meta property="og:site_name" content="FeXiao&#39;s Blog">
-<meta property="og:description" content="了解浏览器的渲染过程和原理，有利于我们前端人员实现一些项目的具体优化方案，例如首屏渲染、按需加载等等；  上一张图，先看为敬！  首先了解一个词，关键渲染路径，即与当前用户操作有关的内容，最直接的体现就是首屏渲染。了解浏览器的渲染过程，大部分就是为了优化关键渲染路径，避免长时间的白屏，提升用户体验； 上个知识点《网页从开始请求到最终显示的完整过程》中说到过浏览器请求加载渲染一个页面的基本过程，精">
+<meta property="og:description" content="此篇文章就react技术，实现下简单的H5的登陆注册，进行下面操作时，默认已安装node(6.11.3)和npm()。  全局安装react官方推荐脚手架npm install create-react-app -g 新建一个react项目create-react-app react-account 进入项目并运行cd react-account &amp;amp;&amp;amp; npm start 运行效">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://p3idd1hk8.bkt.clouddn.com/renderTree.jpg">
-<meta property="og:updated_time" content="2018-02-06T04:49:54.605Z">
+<meta property="og:image" content="http://p3idd1hk8.bkt.clouddn.com/react-start.png">
+<meta property="og:image" content="http://p3idd1hk8.bkt.clouddn.com/react-src-1.png">
+<meta property="og:updated_time" content="2018-02-07T07:11:58.884Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="初窥浏览器渲染过程和原理">
-<meta name="twitter:description" content="了解浏览器的渲染过程和原理，有利于我们前端人员实现一些项目的具体优化方案，例如首屏渲染、按需加载等等；  上一张图，先看为敬！  首先了解一个词，关键渲染路径，即与当前用户操作有关的内容，最直接的体现就是首屏渲染。了解浏览器的渲染过程，大部分就是为了优化关键渲染路径，避免长时间的白屏，提升用户体验； 上个知识点《网页从开始请求到最终显示的完整过程》中说到过浏览器请求加载渲染一个页面的基本过程，精">
-<meta name="twitter:image" content="http://p3idd1hk8.bkt.clouddn.com/renderTree.jpg">
+<meta name="twitter:title" content="react实现简单登录注册">
+<meta name="twitter:description" content="此篇文章就react技术，实现下简单的H5的登陆注册，进行下面操作时，默认已安装node(6.11.3)和npm()。  全局安装react官方推荐脚手架npm install create-react-app -g 新建一个react项目create-react-app react-account 进入项目并运行cd react-account &amp;amp;&amp;amp; npm start 运行效">
+<meta name="twitter:image" content="http://p3idd1hk8.bkt.clouddn.com/react-start.png">
 
 
 
@@ -120,7 +121,7 @@
 
 
 
-  <link rel="canonical" href="https://xiao0502.github.io/2018/02/06/bowserPaint/"/>
+  <link rel="canonical" href="https://xiao0502.github.io/2018/02/07/reactAccount/"/>
 
 
 
@@ -129,7 +130,7 @@
     sidebar: "",
   };
 </script>
-  <title>初窥浏览器渲染过程和原理 | FeXiao's Blog</title>
+  <title>react实现简单登录注册 | FeXiao's Blog</title>
   
 
 
@@ -288,7 +289,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiao0502.github.io/2018/02/06/bowserPaint/">
+    <link itemprop="mainEntityOfPage" href="https://xiao0502.github.io/2018/02/07/reactAccount/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FeXiao">
@@ -305,7 +306,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">初窥浏览器渲染过程和原理</h1>
+          <h1 class="post-title" itemprop="name headline">react实现简单登录注册</h1>
         
 
         <div class="post-meta">
@@ -317,7 +318,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-06T12:12:42+08:00">2018-02-06</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-07T10:42:20+08:00">2018-02-07</time>
             
 
             
@@ -335,7 +336,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
               <span class="post-meta-item-text">字数统计：</span>
-              <span class="post-meta-item-text">722</span>
+              <span class="post-meta-item-text">422</span>
             </span>
             
             <span class="post-count">
@@ -344,7 +345,7 @@
                 <i class="fa fa-clock-o"></i>
               </span>
               <span class="post-meta-item-text">阅读时长：</span>
-              <span class="post-meta-item-text">3&nbsp;m</span>
+              <span class="post-meta-item-text">2&nbsp;m</span>
             </span>
             
           
@@ -361,7 +362,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/html/" itemprop="url" rel="index"><span itemprop="name">html</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a></span>
 
                 
                 
@@ -376,8 +377,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/02/06/bowserPaint/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/02/06/bowserPaint/" itemprop="commentsCount"></span>
+                <a href="/2018/02/07/reactAccount/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/02/07/reactAccount/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -385,7 +386,7 @@
 
           
           
-             <span id="/2018/02/06/bowserPaint/" class="leancloud_visitors" data-flag-title="初窥浏览器渲染过程和原理">
+             <span id="/2018/02/07/reactAccount/" class="leancloud_visitors" data-flag-title="react实现简单登录注册">
               <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -418,49 +419,110 @@
 
       
         <blockquote>
-<p>了解浏览器的渲染过程和原理，有利于我们前端人员实现一些项目的具体优化方案，例如首屏渲染、按需加载等等；</p>
+<p>此篇文章就react技术，实现下简单的H5的登陆注册，<br>进行下面操作时，默认已安装node(6.11.3)和npm()。</p>
 </blockquote>
-<p>上一张图，先看为敬！</p>
-<p><img class="demoImg" src="http://p3idd1hk8.bkt.clouddn.com/renderTree.jpg"></p>
-<p>首先了解一个词，<code>关键渲染路径</code>，即与当前用户操作有关的内容，<br>最直接的体现就是<code>首屏渲染</code>。了解浏览器的渲染过程，<br>大部分就是为了优化关键渲染路径，避免长时间的白屏，提升用户体验；</p>
-<p>上个知识点《网页从开始请求到最终显示的完整过程》中说到过浏览器请求加载渲染一个页面的基本过程，精简下来，就是五个步骤：</p>
-<pre><code>1. DNS查询
-2. TCP连接
-3. HTTP请求
-4. 服务器响应
-5. 浏览器渲染
-</code></pre><p>这个知识点主要说第五个步骤，<code>浏览器渲染</code>，细分下来，也可以是补个步骤：</p>
-<pre><code>1. 处理HTML构建DOM树
-2. 处理CSS构建CSSOM树
-3. 将DOM和CSSOM合并成一个render（渲染树）
-4. 将render布局，计算每个节点的几何信息（Layout）
-5. 将节点绘制在屏幕上（Paint）
-</code></pre><p>要知道，上述的五个步骤不是一次性顺序进行，一旦DOM和CSSOM被修改，<br>就会重新计算并渲染（Repaint），<br>而在实际开发中，CSS和JS都是会经常修改DOM和CSSOM的。</p>
-<pre><code>CSS和JS都会阻塞DOM加载，一旦发生阻塞，解析器会停止构建DOM。
-CSS阻塞时，浏览器会延迟JS脚本执行和DOM构建，知道CSSOM构建完毕。
-JS阻塞时，DOM暂停构建，直至脚本执行完毕。
-</code></pre><p>所以在实际开发中，有<code>两个原则</code>：</p>
-<pre><code>1. CSS优先： CSS优先于JS资源
-2. JS尽量减少对DOM构建的影响
-</code></pre><p>这里对比下Repaint和Reflow,前者是元素的改变不影响布局，后者是布局被影响，渲染成本高</p>
-<p>有可能<code>触发Reflow的行为</code>：</p>
-<pre><code>1. 增删改DOM节点
-2. 增删class属性值
-3. 元素尺寸大小
-4. 文本内容大小
-5. 浏览器窗口改变大小或者拖动
-6. 动画效果
-7. 伪类
-</code></pre><p>在上述行为中，浏览器不是每次Reflow或者Repaint就立即执行，而是积累到一定时候，就会Reflow或者Repaint，<br>当然有些行为，比如改变浏览器窗口大小是立即执行Reflow或者Repaint的。</p>
-<p>说了上述些后，可以谈谈优化浏览器渲染过程的<code>具体实现</code>了。</p>
-<ol>
-<li>指定文档编码 <meta charset="utf-8"></li>
-<li>CSS放在 <code>&lt;head&gt;</code> 里面， js放在 <code>&lt;/body&gt;</code> 结束标签之前</li>
-<li>不要逐条修改CSS样式，提前定义好class样式，<code>对css进行操作</code></li>
-<li>CSS的引入利用 <code>媒体查询</code> ，接触对渲染的阻塞   </li>
-<li>JS的引入适当添加defer或者async,虽然都是 <code>异步加载</code> ，但是前者有序，后者无序</li>
-</ol>
+<h2 id="全局安装react官方推荐脚手架"><a href="#全局安装react官方推荐脚手架" class="headerlink" title="全局安装react官方推荐脚手架"></a>全局安装react官方推荐脚手架</h2><p><code>npm install create-react-app -g</code></p>
+<h2 id="新建一个react项目"><a href="#新建一个react项目" class="headerlink" title="新建一个react项目"></a>新建一个react项目</h2><p><code>create-react-app react-account</code></p>
+<h2 id="进入项目并运行"><a href="#进入项目并运行" class="headerlink" title="进入项目并运行"></a>进入项目并运行</h2><p><code>cd react-account &amp;&amp; npm start</code></p>
+<p>运行效果如下：</p>
+<p><img class="demoImg" src="http://p3idd1hk8.bkt.clouddn.com/react-start.png"></p>
+<p>至此，一个简单的 <code>react-demo</code> 就跑起来了。</p>
+<h2 id="删除官方脚手架src开发目录的代码，新建demo"><a href="#删除官方脚手架src开发目录的代码，新建demo" class="headerlink" title="删除官方脚手架src开发目录的代码，新建demo"></a>删除官方脚手架src开发目录的代码，新建demo</h2><pre><code>// index.js
+import React from &#39;react&#39;
+import ReactDOM from &#39;react-dom&#39;
 
+ReactDOM.render(
+    &lt;div&gt;demo&lt;/div&gt;,
+    document.getElementById(&#39;root&#39;)
+)
+</code></pre><h2 id="释放webpack配置"><a href="#释放webpack配置" class="headerlink" title="释放webpack配置"></a>释放webpack配置</h2><p><code>npm run eject</code></p>
+<h2 id="在src开发目录新建所需要的文件及文件夹"><a href="#在src开发目录新建所需要的文件及文件夹" class="headerlink" title="在src开发目录新建所需要的文件及文件夹"></a>在src开发目录新建所需要的文件及文件夹</h2><p><img class="demoImg" src="http://p3idd1hk8.bkt.clouddn.com/react-src-1.png"></p>
+<p>目录解释：</p>
+<pre><code>1. components： 存放各种木偶组件
+2. containers： 存放各种智能页面
+3. login： 存放登陆页面
+4. register： 存放注册页面
+</code></pre><h2 id="布置路由"><a href="#布置路由" class="headerlink" title="布置路由"></a>布置路由</h2><p><code>npm install react-router-dom -S</code></p>
+<pre><code>import {BrowserRouter as Router, Route} from &#39;react-router-dom&#39;
+
+import Login from &#39;./containers/login&#39;
+import Register from &#39;./containers/register&#39;
+
+ReactDOM.render(
+    &lt;Router&gt;
+        &lt;div&gt;
+            &lt;Route path=&#39;/&#39; component={Login}&gt;&lt;/Route&gt;
+            &lt;Route path=&#39;/login&#39; component={Login}&gt;&lt;/Route&gt;
+            &lt;Route path=&#39;/register&#39; component={Register}&gt;&lt;/Route&gt;
+        &lt;/div&gt;
+    &lt;/Router&gt;,
+    document.getElementById(&#39;root&#39;)
+)
+</code></pre><p>这样就可以实现简单的页面路由布置</p>
+<h2 id="利用UI框架antd-mobile快速搭建所需页面"><a href="#利用UI框架antd-mobile快速搭建所需页面" class="headerlink" title="利用UI框架antd-mobile快速搭建所需页面"></a>利用UI框架antd-mobile快速搭建所需页面</h2><p>安装UI框架 <code>npm install antd-mobile -S</code><br>安装UI框架按需加载插件 <code>npm install babel-plugin-import -S</code></p>
+<pre><code>// login/index.js
+import React, {Component} from &#39;react&#39;
+import {
+    List,
+    InputItem,
+    WingBlank,
+    WhiteSpace,
+    Button
+} from &#39;antd-mobile&#39;
+import Logo from &#39;../../components/logo&#39;
+import &#39;./login.css&#39;
+
+class Login extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            username: &#39;&#39;,
+            password: &#39;&#39;
+        }
+    }
+
+    render() {
+        return (
+            &lt;div className=&quot;page-login&quot;&gt;
+                &lt;Logo/&gt;
+                &lt;WhiteSpace&gt;&lt;/WhiteSpace&gt;
+                &lt;WhiteSpace&gt;&lt;/WhiteSpace&gt;
+                &lt;WhiteSpace&gt;&lt;/WhiteSpace&gt;
+                &lt;WhiteSpace&gt;&lt;/WhiteSpace&gt;
+                &lt;List&gt;
+
+                &lt;/List&gt;
+                &lt;WhiteSpace&gt;&lt;/WhiteSpace&gt;
+                &lt;WhiteSpace&gt;&lt;/WhiteSpace&gt;
+                &lt;WhiteSpace&gt;&lt;/WhiteSpace&gt;
+                &lt;WhiteSpace&gt;&lt;/WhiteSpace&gt;
+                &lt;WhiteSpace&gt;&lt;/WhiteSpace&gt;
+                &lt;WingBlank&gt;
+                    &lt;Button type=&quot;primary&quot;
+                            onClick={this.handleLogin.bind(this)}
+                    &gt;登录&lt;/Button&gt;
+                    &lt;WhiteSpace&gt;&lt;/WhiteSpace&gt;
+                    &lt;Button type=&quot;primary&quot;
+                            onClick={this.handleGoRegister.bind(this)}
+                    &gt;去注册&lt;/Button&gt;
+                &lt;/WingBlank&gt;
+            &lt;/div&gt;
+        )
+    }
+
+    // 去注册
+    handleGoRegister() {
+        this.props.history.push(&#39;/register&#39;)
+    }
+
+    // 登陆
+    handleLogin() {
+
+    }
+}
+
+export default Login
+</code></pre>
       
     </div>
     <div>
@@ -483,12 +545,12 @@ JS阻塞时，DOM暂停构建，直至脚本执行完毕。
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/2018/02/06/bowserPaint/">初窥浏览器渲染过程和原理</a></p>
+  <p><span>本文标题:</span><a href="/2018/02/07/reactAccount/">react实现简单登录注册</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 FeXiao 的个人博客">FeXiao</a></p>
-  <p><span>发布时间:</span>2018年02月06日 - 12:02</p>
-  <p><span>最后更新:</span>2018年02月06日 - 12:02</p>
-  <p><span>原始链接:</span><a href="/2018/02/06/bowserPaint/" title="初窥浏览器渲染过程和原理">https://xiao0502.github.io/2018/02/06/bowserPaint/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://xiao0502.github.io/2018/02/06/bowserPaint/"  aria-label="复制成功！"></i></span><span id="tips">复制成功</span>
+  <p><span>发布时间:</span>2018年02月07日 - 10:02</p>
+  <p><span>最后更新:</span>2018年02月07日 - 15:02</p>
+  <p><span>原始链接:</span><a href="/2018/02/07/reactAccount/" title="react实现简单登录注册">https://xiao0502.github.io/2018/02/07/reactAccount/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://xiao0502.github.io/2018/02/07/reactAccount/"  aria-label="复制成功！"></i></span><span id="tips">复制成功</span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎</a> 转载请保留原文链接及作者。</p>
 </div>
@@ -551,7 +613,7 @@ JS阻塞时，DOM暂停构建，直至脚本执行完毕。
       
         <div class="post-tags">
           
-            <a href="/tags/浏览器渲染/" rel="tag"># 浏览器渲染</a>
+            <a href="/tags/react/" rel="tag"># react</a>
           
         </div>
       
@@ -564,8 +626,8 @@ JS阻塞时，DOM暂停构建，直至脚本执行完毕。
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/05/urlResolve/" rel="next" title="网页从开始请求到最终显示的完整过程">
-                <i class="fa fa-chevron-left"></i> 网页从开始请求到最终显示的完整过程
+              <a href="/2018/02/06/bowserPaint/" rel="next" title="初窥浏览器渲染过程和原理">
+                <i class="fa fa-chevron-left"></i> 初窥浏览器渲染过程和原理
               </a>
             
           </div>
@@ -573,10 +635,6 @@ JS阻塞时，DOM暂停构建，直至脚本执行完毕。
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/02/07/reactAccount/" rel="prev" title="react实现简单登录注册">
-                react实现简单登录注册 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -632,8 +690,17 @@ JS阻塞时，DOM暂停构建，直至脚本执行完毕。
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -741,6 +808,22 @@ JS阻塞时，DOM暂停构建，直至脚本执行完毕。
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#全局安装react官方推荐脚手架"><span class="nav-number">1.</span> <span class="nav-text">全局安装react官方推荐脚手架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新建一个react项目"><span class="nav-number">2.</span> <span class="nav-text">新建一个react项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进入项目并运行"><span class="nav-number">3.</span> <span class="nav-text">进入项目并运行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除官方脚手架src开发目录的代码，新建demo"><span class="nav-number">4.</span> <span class="nav-text">删除官方脚手架src开发目录的代码，新建demo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#释放webpack配置"><span class="nav-number">5.</span> <span class="nav-text">释放webpack配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在src开发目录新建所需要的文件及文件夹"><span class="nav-number">6.</span> <span class="nav-text">在src开发目录新建所需要的文件及文件夹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#布置路由"><span class="nav-number">7.</span> <span class="nav-text">布置路由</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#利用UI框架antd-mobile快速搭建所需页面"><span class="nav-number">8.</span> <span class="nav-text">利用UI框架antd-mobile快速搭建所需页面</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
