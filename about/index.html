@@ -497,7 +497,24 @@
     
 
   </div>
-
+ <script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      hljs.initHighlighting();
+      $('pre code').each(function() {
+        var lines = $(this).text().split('\n').length - 1;
+        var $numbering = $('<ul/>').addClass('pre-numbering');
+        $(this)
+          .addClass('has-numbering')
+          .parent()
+          .append($numbering);
+        for (i = 1; i <= lines; i++) {
+          $numbering.append($('<li/>'));
+        }
+      });
+    });
+  </script>
+  <script type="text/javascript" src="/js/src/particle.js"></script>
   
 
 <script type="text/javascript">
@@ -781,25 +798,5 @@
 <script>AV.initialize("7pI2ebl2tM7p1FJtn2UVgwHo-gzGzoHsz", "1WufB1MWLSYjhpAlqTaCDwvn");</script>
 
   
-  <script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-      <script type="text/javascript">
-        $(function() {
-          hljs.initHighlighting();
-          $('pre code').each(function() {
-            var lines = $(this).text().split('\n').length - 1;
-            var $numbering = $('<ul/>').addClass('pre-numbering');
-            $(this)
-              .addClass('has-numbering')
-              .parent()
-              .append($numbering);
-            for (i = 1; i <= lines; i++) {
-              $numbering.append($('<li/>'));
-            }
-          });
-        });
-
-      </script>
-    <script type="text/javascript" src="/js/src/particle.js"></script>
-
 </body>
 </html>

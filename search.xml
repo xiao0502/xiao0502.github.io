@@ -25,10 +25,12 @@ ReactDOM.render(
 </code></pre><h2 id="释放webpack配置"><a href="#释放webpack配置" class="headerlink" title="释放webpack配置"></a>释放webpack配置</h2><p><code>npm run eject</code></p>
 <h2 id="在src开发目录新建所需要的文件及文件夹"><a href="#在src开发目录新建所需要的文件及文件夹" class="headerlink" title="在src开发目录新建所需要的文件及文件夹"></a>在src开发目录新建所需要的文件及文件夹</h2><p><img class="demoImg" src="http://p3idd1hk8.bkt.clouddn.com/react-src-1.png"></p>
 <p>目录解释：</p>
-<pre><code>1. components： 存放各种木偶组件
-2. containers： 存放各种智能页面
-3. login： 存放登陆页面
-4. register： 存放注册页面
+<pre><code>components： 存放各种木偶组件
+containers： 存放各种智能页面
+login： 存放登陆页面
+register： 存放注册页面
+hrInfo： 存放HR详情页面
+workerInfo： 存放求职者详情页面
 </code></pre><h2 id="布置路由"><a href="#布置路由" class="headerlink" title="布置路由"></a>布置路由</h2><p><code>npm install react-router-dom -S</code></p>
 <pre><code>import {BrowserRouter as Router, Route} from &#39;react-router-dom&#39;
 
@@ -47,8 +49,8 @@ ReactDOM.render(
 )
 </code></pre><p>这样就可以实现简单的页面路由布置</p>
 <h2 id="利用UI框架antd-mobile快速搭建所需页面"><a href="#利用UI框架antd-mobile快速搭建所需页面" class="headerlink" title="利用UI框架antd-mobile快速搭建所需页面"></a>利用UI框架antd-mobile快速搭建所需页面</h2><p>安装UI框架 <code>npm install antd-mobile -S</code><br>安装UI框架按需加载插件 <code>npm install babel-plugin-import -S</code></p>
-<pre><code>// login/index.js
-import React, {Component} from &#39;react&#39;
+<p>login/index.js</p>
+<pre><code>import React, {Component} from &#39;react&#39;
 import {
     List,
     InputItem,
@@ -77,7 +79,12 @@ class Login extends Component {
                 &lt;WhiteSpace&gt;&lt;/WhiteSpace&gt;
                 &lt;WhiteSpace&gt;&lt;/WhiteSpace&gt;
                 &lt;List&gt;
-
+                    &lt;InputItem
+                        onChange={val =&gt; this.handleChange(&#39;username&#39;, val)}
+                    &gt;项目账号：&lt;/InputItem&gt;
+                    &lt;InputItem
+                        onChange={val =&gt; this.handleChange(&#39;password&#39;, val)}
+                    &gt;项目密码：&lt;/InputItem&gt;
                 &lt;/List&gt;
                 &lt;WhiteSpace&gt;&lt;/WhiteSpace&gt;
                 &lt;WhiteSpace&gt;&lt;/WhiteSpace&gt;
@@ -106,10 +113,257 @@ class Login extends Component {
     handleLogin() {
 
     }
+
+    // 数据双向绑定
+    handleChange(key, val) {
+        this.setState({
+            [key]: val
+        })
+    }
 }
 
 export default Login
-</code></pre>]]></content>
+</code></pre><p>register/index.js  </p>
+<pre><code>import React, {Component} from &#39;react&#39;
+import {
+    List,
+    InputItem,
+    WingBlank,
+    WhiteSpace,
+    Button,
+    Radio
+} from &#39;antd-mobile&#39;
+import Logo from &#39;../../components/logo&#39;
+import &#39;./register.css&#39;
+
+class Register extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            type: &#39;worker&#39;,
+            username: &#39;&#39;,
+            password: &#39;&#39;,
+            passwordConfirm: &#39;&#39;,
+        }
+    }
+
+    render() {
+        const RadioItem = Radio.RadioItem;
+        return (
+            &lt;div className=&quot;page-register&quot;&gt;
+                &lt;Logo/&gt;
+                &lt;List&gt;
+                    &lt;InputItem
+                        onChange={val =&gt; this.handleChange(&#39;username&#39;, val)}
+                    &gt;项目账号：&lt;/InputItem&gt;
+                    &lt;InputItem
+                        onChange={val =&gt; this.handleChange(&#39;password&#39;, val)}
+                    &gt;项目密码：&lt;/InputItem&gt;
+                    &lt;InputItem
+                        onChange={val =&gt; this.handleChange(&#39;passwordConfirm&#39;, val)}
+                    &gt;确认密码：&lt;/InputItem&gt;
+                &lt;/List&gt;
+                &lt;WhiteSpace&gt;&lt;/WhiteSpace&gt;
+                &lt;List&gt;
+                    &lt;RadioItem
+                        checked={this.state.type === &#39;worker&#39;}
+                        onClick={() =&gt; {
+                            this.setState({
+                                type: &#39;worker&#39;
+                            })
+                        }}
+                    &gt;求职者&lt;/RadioItem&gt;
+                    &lt;RadioItem
+                        checked={this.state.type === &#39;hr&#39;}
+                        onClick={() =&gt; {
+                            this.setState({
+                                type: &#39;hr&#39;
+                            })
+                        }}
+                    &gt;HR&lt;/RadioItem&gt;
+                &lt;/List&gt;
+                &lt;WhiteSpace&gt;&lt;/WhiteSpace&gt;
+                &lt;WhiteSpace&gt;&lt;/WhiteSpace&gt;
+                &lt;WhiteSpace&gt;&lt;/WhiteSpace&gt;
+                &lt;WingBlank&gt;
+                    &lt;Button type=&quot;primary&quot;&gt;注册&lt;/Button&gt;
+                    &lt;WhiteSpace&gt;&lt;/WhiteSpace&gt;
+                    &lt;Button type=&quot;primary&quot;
+                            onClick={this.handleGoLogin.bind(this)}
+                    &gt;已有账号，去登录&lt;/Button&gt;
+                &lt;/WingBlank&gt;
+            &lt;/div&gt;
+        )
+    }
+
+    // 去登陆
+    handleGoLogin() {
+        this.props.history.push(&#39;/login&#39;)
+    }
+
+    // 数据双向绑定
+    handleChange(key, val) {
+        this.setState({
+            [key]: val
+        })
+    }
+}
+
+export default Register
+</code></pre><p>这里注意到，实现react的双向数据绑定，用的函数提取</p>
+<pre><code>handleChange(key, val) {
+    this.setState({
+        [key]: val
+    })
+}
+</code></pre><p>尤其要注意到这里的 <code>[key]</code> ，不能直接用 <code>key</code> ,不然会被当做字符串</p>
+<h2 id="利用express启动服务，MongoDB作为数据库"><a href="#利用express启动服务，MongoDB作为数据库" class="headerlink" title="利用express启动服务，MongoDB作为数据库"></a>利用express启动服务，MongoDB作为数据库</h2><blockquote>
+<p>我们再这里用MongoDB作为用户注册时候的数据库，用express启动服务提供接口，用axios作为请求工具</p>
+</blockquote>
+<p>安装MongoDB： <code>sudo brew install mongodb</code> （这里是MAC安装方式，其他平台自行google）<br>安装mondoose： <code>npm install mongoose -D</code> （MongoDB数据库插件）<br>安装axios： <code>npm install axios -S</code><br>安装express：<code>npm install express -S</code></p>
+<p>项目根目录新建server文件夹，里面新建index.js作为服务的入口</p>
+<pre><code>// server/index.js
+const express = require(&#39;express&#39;);
+
+const app = express();
+
+app.get(&#39;/&#39;, (req, res) =&gt; {
+    res.send(&#39;hi, express&#39;);
+})
+
+app.listen(8000, () =&gt; {
+    console.log(`server is running at localhost:8000`);
+})
+</code></pre><p>安装nodemon： <code>npm install nodemon -g</code> （node的实时监听）</p>
+<p>启动服务： <code>nodemon server/index.js</code></p>
+<p>访问 <code>localhost:8000</code> ,就可以在页面上看到 <code>hi, express</code></p>
+<p>接着对接口做处理，server下新建user.js作为路由中间件</p>
+<pre><code>const express = require(&#39;express&#39;)
+
+// 生成express中间件
+const Router = express.Router();
+
+Router.get(&#39;/loginStatus&#39;, (req, res) =&gt; {
+    res.json({
+        code: 1,
+        msg: &#39;用户未登录&#39;
+    })
+})
+
+module.exports = Router
+</code></pre><p>这样我们就写死了一个登陆状态为未登录的接口服务。</p>
+<h2 id="编写判断登陆组件"><a href="#编写判断登陆组件" class="headerlink" title="编写判断登陆组件"></a>编写判断登陆组件</h2><blockquote>
+<p>项目实现登陆注册，首先得判断用户是否登陆。结合上面的接口，这里会涉及到跨域的问题。<br>react项目中解决跨域问题也是非常简单的。</p>
+</blockquote>
+<pre><code>// package.json
+&quot;proxy&quot;: &quot;http://localhost:8000&quot;
+</code></pre><p>checkLogin/index.js</p>
+<pre><code>import {Component} from &#39;react&#39;
+import axios from &#39;axios&#39;
+import {withRouter} from &#39;react-router-dom&#39;  // 由于checkLogin 不是路由，要想用跳转的话得引入withRouter
+
+@withRouter
+class CheckLogin extends Component {
+    render() {
+        return null
+    }
+
+    componentDidMount() {
+        // 登陆注册页面无需判断登陆状态
+        let noCheckRouter = [&#39;/login&#39;, &#39;/register&#39;]
+        if (noCheckRouter.indexOf(this.props.history.location.pathname) &gt; -1) {
+            return
+        }
+
+        axios.get(&#39;/user/loginStatus&#39;)
+            .then(res =&gt; {
+                console.log(res.data);
+                if (res.data.code === 1) {
+                    this.props.history.push(&#39;/login&#39;)
+                }
+            })
+    }
+}
+
+export default CheckLogin
+</code></pre><p>checkLogin/index.js 中，当用户未登录时，强制跳转到登陆页面，这里涉及到路由跳转，<br>而checkLogin/index.js不是路由，得用 <code>react-router-dom</code> 中的 <code>withRouter</code><br>这里可以利用 <code>babel-plugin-transform-decorators-legacy</code>支持 <code>withRouter</code><br>的装饰器写法，这个插件也为后面的redux装饰器写法提供方便。</p>
+<p>安装装饰器插件： <code>npm install babel-plugin-transform-decorators-legacy -D</code><br>使用：</p>
+<pre><code>&quot;babel&quot;: {
+    &quot;presets&quot;: [
+      &quot;react-app&quot;
+    ],
+    &quot;plugins&quot;: [
+      //和之前添加的UI框架按需加载插件一样用法
+      &quot;transform-decorators-legacy&quot;, 
+      [
+        &quot;import&quot;,
+        {
+          &quot;libraryName&quot;: &quot;antd-mobile&quot;,
+          &quot;style&quot;: &quot;css&quot;
+        }
+      ]
+    ]
+  },
+</code></pre><p>然后在入口文件index.js中使用</p>
+<pre><code>ReactDOM.render(
+    &lt;Router&gt;
+        &lt;div className=&quot;react-account&quot;&gt;
+            &lt;CheckLogin/&gt;
+            &lt;Route path=&#39;/login&#39; component={Login}&gt;&lt;/Route&gt;
+            &lt;Route path=&#39;/register&#39; component={Register}&gt;&lt;/Route&gt;
+            &lt;Route path=&#39;/hrInfo&#39; component={HrInfo}&gt;&lt;/Route&gt;
+            &lt;Route path=&#39;/workerInfo&#39; component={WorkerInfo}&gt;&lt;/Route&gt;
+        &lt;/div&gt;
+    &lt;/Router&gt;,
+    document.getElementById(&#39;root&#39;)
+)
+</code></pre><p>因为之前接口是写死的未登录，判断登陆组件先写到这里，MongoDB数据库搭建完模型后继续补充。</p>
+<h2 id="MongoDB数据库"><a href="#MongoDB数据库" class="headerlink" title="MongoDB数据库"></a>MongoDB数据库</h2><pre><code>const mongoose = require(&#39;mongoose&#39;)
+
+// mongoose 连接这个数据库并生成&quot;react-account&quot;这个集合
+mongoose.connect(&#39;mongodb://127.0.0.1:27017/react-account&#39;)
+
+// 连接成功后的打印
+mongoose.connection.on(&#39;connected&#39;,() =&gt; {
+    console.log(&#39;mongo connect success&#39;);
+})
+
+// 创建数据模型
+
+const models = {
+    user: {
+        &#39;username&#39;: {type: String, require: true},
+        &#39;password&#39;: {type: String, require: true},
+        &#39;type&#39;: {type: String, require: true},
+    }
+}
+
+// 遍历生成数据模型
+for(let m in models) {
+    mongoose.model(m, new mongoose.Schema(models[m]))
+}
+
+// 导出供其他地方获取
+module.exports = {
+    getModel: function (m) {
+        return mongoose.model(m)
+    }
+}
+</code></pre><p>运行 <code>mongo</code> 即可</p>
+<p>这里需要安装两个插件 <code>body-parser</code> 和 <code>cookie-parser</code></p>
+<p><code>npm install body-parser -S</code> （后台数据接口用户传进来的参数解析插件）<br><code>npm install cookie-parser -S</code> （通过cookie存储用户登录状态）</p>
+<p>使用：</p>
+<pre><code>// server/index.js
+const bodyParser = require(&#39;body-parser&#39;)
+const cookieParser = require(&#39;cookie-parser&#39;)
+
+app.use(bodyParser.json())
+app.use(cookieParser())
+</code></pre><h2 id="实现用户注册"><a href="#实现用户注册" class="headerlink" title="实现用户注册"></a>实现用户注册</h2><blockquote>
+<p>注册接口这里要用到 <code>react</code> 的另一个核心 <code>redux</code></p>
+</blockquote>
+<p>未带待续~~</p>
+]]></content>
       
         <categories>
             
@@ -276,12 +530,12 @@ JS阻塞时，DOM暂停构建，直至脚本执行完毕。
 <li>初始化建站模板<br><code>hexo init yourBlogName</code></li>
 <li><p>进入项目并安装依赖<br><code>cd yourBlogName &amp;&amp; npm install</code></p>
 <p> 新建完成后，会生成如下目录：</p>
-<pre><code>├── _config.yml // 项目配置文件
-├── package.json
-├── scaffolds
-├── source // 开发目录
-|   └── _posts
-└── themes // 主题目录
+<pre><code> ├── _config.yml // 项目配置文件
+ ├── package.json
+ ├── scaffolds
+ ├── source // 开发目录
+ |   └── _posts
+ └── themes // 主题目录
 </code></pre></li>
 </ol>
 <p>hexo主要命令行介绍</p>

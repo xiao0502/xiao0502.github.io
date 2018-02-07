@@ -105,7 +105,7 @@
 <meta property="og:site_name" content="FeXiao&#39;s Blog">
 <meta property="og:description" content="记录记录，吐槽吐槽，抒发抒发。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-02-01T09:37:21.367Z">
+<meta property="og:updated_time" content="2018-02-01T09:37:21.366Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分类">
 <meta name="twitter:description" content="记录记录，吐槽吐槽，抒发抒发。">
@@ -521,7 +521,24 @@
     
 
   </div>
-
+ <script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      hljs.initHighlighting();
+      $('pre code').each(function() {
+        var lines = $(this).text().split('\n').length - 1;
+        var $numbering = $('<ul/>').addClass('pre-numbering');
+        $(this)
+          .addClass('has-numbering')
+          .parent()
+          .append($numbering);
+        for (i = 1; i <= lines; i++) {
+          $numbering.append($('<li/>'));
+        }
+      });
+    });
+  </script>
+  <script type="text/javascript" src="/js/src/particle.js"></script>
   
 
 <script type="text/javascript">
@@ -805,25 +822,5 @@
 <script>AV.initialize("7pI2ebl2tM7p1FJtn2UVgwHo-gzGzoHsz", "1WufB1MWLSYjhpAlqTaCDwvn");</script>
 
   
-  <script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-      <script type="text/javascript">
-        $(function() {
-          hljs.initHighlighting();
-          $('pre code').each(function() {
-            var lines = $(this).text().split('\n').length - 1;
-            var $numbering = $('<ul/>').addClass('pre-numbering');
-            $(this)
-              .addClass('has-numbering')
-              .parent()
-              .append($numbering);
-            for (i = 1; i <= lines; i++) {
-              $numbering.append($('<li/>'));
-            }
-          });
-        });
-
-      </script>
-    <script type="text/javascript" src="/js/src/particle.js"></script>
-
 </body>
 </html>

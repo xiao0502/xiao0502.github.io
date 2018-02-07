@@ -107,7 +107,7 @@
 <meta property="og:description" content="关于 hexo 建站主题 next 的个性化技巧，随便百度谷歌没有上百也有大几十篇，再继续介绍next的个性化技巧，就显得有点无趣了。这里主要给大家分享一个已经配置好的了next主题文件和如何使用的说明，毕竟大多数人利用github建立个站都是为了写点东西。  新建github个站注册github账号后，新建一个包含与账户名相同的仓库，如下：  建好仓库后，可以用仓库名字去访问自己的 gith">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://p3idd1hk8.bkt.clouddn.com/store.png">
-<meta property="og:updated_time" content="2018-02-07T03:05:38.889Z">
+<meta property="og:updated_time" content="2018-02-07T03:05:38.888Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="十分钟建站利器—github+hexo+next">
 <meta name="twitter:description" content="关于 hexo 建站主题 next 的个性化技巧，随便百度谷歌没有上百也有大几十篇，再继续介绍next的个性化技巧，就显得有点无趣了。这里主要给大家分享一个已经配置好的了next主题文件和如何使用的说明，毕竟大多数人利用github建立个站都是为了写点东西。  新建github个站注册github账号后，新建一个包含与账户名相同的仓库，如下：  建好仓库后，可以用仓库名字去访问自己的 gith">
@@ -428,12 +428,12 @@
 <li>初始化建站模板<br><code>hexo init yourBlogName</code></li>
 <li><p>进入项目并安装依赖<br><code>cd yourBlogName &amp;&amp; npm install</code></p>
 <p> 新建完成后，会生成如下目录：</p>
-<pre><code>├── _config.yml // 项目配置文件
-├── package.json
-├── scaffolds
-├── source // 开发目录
-|   └── _posts
-└── themes // 主题目录
+<pre><code> ├── _config.yml // 项目配置文件
+ ├── package.json
+ ├── scaffolds
+ ├── source // 开发目录
+ |   └── _posts
+ └── themes // 主题目录
 </code></pre></li>
 </ol>
 <p>hexo主要命令行介绍</p>
@@ -804,7 +804,24 @@
     
 
   </div>
-
+ <script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      hljs.initHighlighting();
+      $('pre code').each(function() {
+        var lines = $(this).text().split('\n').length - 1;
+        var $numbering = $('<ul/>').addClass('pre-numbering');
+        $(this)
+          .addClass('has-numbering')
+          .parent()
+          .append($numbering);
+        for (i = 1; i <= lines; i++) {
+          $numbering.append($('<li/>'));
+        }
+      });
+    });
+  </script>
+  <script type="text/javascript" src="/js/src/particle.js"></script>
   
 
 <script type="text/javascript">
@@ -1088,25 +1105,5 @@
 <script>AV.initialize("7pI2ebl2tM7p1FJtn2UVgwHo-gzGzoHsz", "1WufB1MWLSYjhpAlqTaCDwvn");</script>
 
   
-  <script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-      <script type="text/javascript">
-        $(function() {
-          hljs.initHighlighting();
-          $('pre code').each(function() {
-            var lines = $(this).text().split('\n').length - 1;
-            var $numbering = $('<ul/>').addClass('pre-numbering');
-            $(this)
-              .addClass('has-numbering')
-              .parent()
-              .append($numbering);
-            for (i = 1; i <= lines; i++) {
-              $numbering.append($('<li/>'));
-            }
-          });
-        });
-
-      </script>
-    <script type="text/javascript" src="/js/src/particle.js"></script>
-
 </body>
 </html>
