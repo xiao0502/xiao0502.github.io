@@ -3,6 +3,77 @@
   
     
     <entry>
+      <title><![CDATA[浏览器跨域]]></title>
+      <url>/2018/03/02/cross-domain/</url>
+      <content type="html"><![CDATA[<blockquote>
+<p>跨域是一种现象，一种问题。经常被很多面试官拿出来问，在开发中，和后台联调的时候，也是要解决问题中必不可少的步骤。<br>趁着最近有时间，可以拿出来好好说说，加深自己对跨域的理解，温故而知新。</p>
+</blockquote>
+<h2 id="跨域是什么？为什么会出现跨域？"><a href="#跨域是什么？为什么会出现跨域？" class="headerlink" title="跨域是什么？为什么会出现跨域？"></a>跨域是什么？为什么会出现跨域？</h2><p><img class="demoImg" src="http://p3idd1hk8.bkt.clouddn.com/cross-domain.png"><br>一个完整的域名，包括了 <code>协议</code>、<code>域名</code>、<code>端口号</code>，任何一种不同，就是跨域的出现。<br>上图中的协议是<code>https</code>, 域名是<code>localhost</code>也就是<code>127.0.0.1</code>， 端口号是<code>8080</code><br>浏览器为了保护用户数据安全，防止恶意访问篡改做出的保护手段。</p>
+<h2 id="跨域出现了会有什么影响？"><a href="#跨域出现了会有什么影响？" class="headerlink" title="跨域出现了会有什么影响？"></a>跨域出现了会有什么影响？</h2><p>可以参考 阮一峰老师一篇文章 《浏览器同源政策及其规避方法》，这篇文章提到了，跨域后出现的限制</p>
+<pre><code>Cookie、LocalStorage 和 IndexDB 无法读取。
+DOM 无法获得。
+AJAX 请求不能发送。
+</code></pre><p>具体细节可以参考这篇文章 <a href="http://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html</a> </p>
+<h2 id="如何解决跨域？"><a href="#如何解决跨域？" class="headerlink" title="如何解决跨域？"></a>如何解决跨域？</h2><pre><code>JSONP
+nginx代理转发
+vue开发中proxyTable
+</code></pre><h4 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h4><blockquote>
+<p>JSONP解决跨域是以前一种比较旧的解决方案，而且只能支持get请求，目前基本上不太会用到这种方案了。</p>
+</blockquote>
+<p>JSONP主要是利用了script标签不受浏览器同源策略的影响的特点，动态添加script标签，自执行前后端约定好字段的函数，<br>从而获取数据，script加载的地址例如 <code>http://demo.com/callback=fn</code></p>
+<pre><code>var script = document.createElement(&#39;script);
+script.setAttribute(&#39;type&#39;,&#39;text/javascript&#39;);
+script.src = http://demo.com/callback=fn
+document.body.appendChild(script);
+
+function fn(data) {
+    console.log(JSON.stringify(data))
+}
+</code></pre><p>后台对应的会在所返回的json数据外面包裹fn</p>
+<pre><code>fn({
+    &quot;code&quot;: 0,
+    &quot;msg&quot;: &quot;请求成功&quot;
+})
+</code></pre><h4 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h4><blockquote>
+<p>nginx代理转发是我用得最多的解决跨域的方案了，简单粗暴还可行。</p>
+</blockquote>
+<p>接口地址</p>
+<p><img class="demoImg" src="http://p3idd1hk8.bkt.clouddn.com/api.png"> </p>
+<p>nginx修改代理</p>
+<p><img class="demoImg" src="http://p3idd1hk8.bkt.clouddn.com/changeApi.png"> </p>
+<p>这样所监听的端口发送请求时，nginx会把请求转发到接口地址 8088端口上</p>
+<p><img class="demoImg" src="http://p3idd1hk8.bkt.clouddn.com/8080.png"> </p>
+<p><img class="demoImg" src="http://p3idd1hk8.bkt.clouddn.com/request.png"> </p>
+<h4 id="vue中的proxyTable"><a href="#vue中的proxyTable" class="headerlink" title="vue中的proxyTable"></a>vue中的proxyTable</h4><blockquote>
+<p>用vue开发项目，自带的proxTable原理与ningx转发请求类似，不需要配置nginx，vue框架已经做好了处理。</p>
+</blockquote>
+<pre><code>  proxyTable: {
+        &#39;/api&#39;: {
+            target: &#39;http://localhost:8088&#39;,
+            changeOrigin: true,
+            pathRewrite: {
+                &#39;^/api&#39;: &#39;/api&#39;,
+            }
+        }
+    },
+</code></pre>]]></content>
+      
+        <categories>
+            
+            <category> html </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 浏览器跨域 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[react实现简单登录注册]]></title>
       <url>/2018/02/07/reactAccount/</url>
       <content type="html"><![CDATA[<blockquote>

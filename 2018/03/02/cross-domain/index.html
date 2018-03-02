@@ -95,23 +95,27 @@
 
 
   
-  <meta name="keywords" content="浏览器渲染," />
+  <meta name="keywords" content="浏览器跨域," />
 
 
-<meta name="description" content="了解浏览器的渲染过程和原理，有利于我们前端人员实现一些项目的具体优化方案，例如首屏渲染、按需加载等等；  上一张图，先看为敬！  首先了解一个词，关键渲染路径，即与当前用户操作有关的内容，最直接的体现就是首屏渲染。了解浏览器的渲染过程，大部分就是为了优化关键渲染路径，避免长时间的白屏，提升用户体验； 上个知识点《网页从开始请求到最终显示的完整过程》中说到过浏览器请求加载渲染一个页面的基本过程，精">
-<meta name="keywords" content="浏览器渲染">
+<meta name="description" content="跨域是一种现象，一种问题。经常被很多面试官拿出来问，在开发中，和后台联调的时候，也是要解决问题中必不可少的步骤。趁着最近有时间，可以拿出来好好说说，加深自己对跨域的理解，温故而知新。  跨域是什么？为什么会出现跨域？一个完整的域名，包括了 协议、域名、端口号，任何一种不同，就是跨域的出现。上图中的协议是https, 域名是localhost也就是127.0.0.1， 端口号是8080浏览器为了保">
+<meta name="keywords" content="浏览器跨域">
 <meta property="og:type" content="article">
-<meta property="og:title" content="初窥浏览器渲染过程和原理">
-<meta property="og:url" content="https://xiao0502.github.io/2018/02/06/bowserPaint/index.html">
+<meta property="og:title" content="浏览器跨域">
+<meta property="og:url" content="https://xiao0502.github.io/2018/03/02/cross-domain/index.html">
 <meta property="og:site_name" content="FeXiao&#39;s Blog">
-<meta property="og:description" content="了解浏览器的渲染过程和原理，有利于我们前端人员实现一些项目的具体优化方案，例如首屏渲染、按需加载等等；  上一张图，先看为敬！  首先了解一个词，关键渲染路径，即与当前用户操作有关的内容，最直接的体现就是首屏渲染。了解浏览器的渲染过程，大部分就是为了优化关键渲染路径，避免长时间的白屏，提升用户体验； 上个知识点《网页从开始请求到最终显示的完整过程》中说到过浏览器请求加载渲染一个页面的基本过程，精">
+<meta property="og:description" content="跨域是一种现象，一种问题。经常被很多面试官拿出来问，在开发中，和后台联调的时候，也是要解决问题中必不可少的步骤。趁着最近有时间，可以拿出来好好说说，加深自己对跨域的理解，温故而知新。  跨域是什么？为什么会出现跨域？一个完整的域名，包括了 协议、域名、端口号，任何一种不同，就是跨域的出现。上图中的协议是https, 域名是localhost也就是127.0.0.1， 端口号是8080浏览器为了保">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://p3idd1hk8.bkt.clouddn.com/renderTree.jpg">
-<meta property="og:updated_time" content="2018-02-06T04:49:54.605Z">
+<meta property="og:image" content="http://p3idd1hk8.bkt.clouddn.com/cross-domain.png">
+<meta property="og:image" content="http://p3idd1hk8.bkt.clouddn.com/api.png">
+<meta property="og:image" content="http://p3idd1hk8.bkt.clouddn.com/changeApi.png">
+<meta property="og:image" content="http://p3idd1hk8.bkt.clouddn.com/8080.png">
+<meta property="og:image" content="http://p3idd1hk8.bkt.clouddn.com/request.png">
+<meta property="og:updated_time" content="2018-03-02T10:31:41.555Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="初窥浏览器渲染过程和原理">
-<meta name="twitter:description" content="了解浏览器的渲染过程和原理，有利于我们前端人员实现一些项目的具体优化方案，例如首屏渲染、按需加载等等；  上一张图，先看为敬！  首先了解一个词，关键渲染路径，即与当前用户操作有关的内容，最直接的体现就是首屏渲染。了解浏览器的渲染过程，大部分就是为了优化关键渲染路径，避免长时间的白屏，提升用户体验； 上个知识点《网页从开始请求到最终显示的完整过程》中说到过浏览器请求加载渲染一个页面的基本过程，精">
-<meta name="twitter:image" content="http://p3idd1hk8.bkt.clouddn.com/renderTree.jpg">
+<meta name="twitter:title" content="浏览器跨域">
+<meta name="twitter:description" content="跨域是一种现象，一种问题。经常被很多面试官拿出来问，在开发中，和后台联调的时候，也是要解决问题中必不可少的步骤。趁着最近有时间，可以拿出来好好说说，加深自己对跨域的理解，温故而知新。  跨域是什么？为什么会出现跨域？一个完整的域名，包括了 协议、域名、端口号，任何一种不同，就是跨域的出现。上图中的协议是https, 域名是localhost也就是127.0.0.1， 端口号是8080浏览器为了保">
+<meta name="twitter:image" content="http://p3idd1hk8.bkt.clouddn.com/cross-domain.png">
 
 
 
@@ -120,7 +124,7 @@
 
 
 
-  <link rel="canonical" href="https://xiao0502.github.io/2018/02/06/bowserPaint/"/>
+  <link rel="canonical" href="https://xiao0502.github.io/2018/03/02/cross-domain/"/>
 
 
 
@@ -129,7 +133,7 @@
     sidebar: "",
   };
 </script>
-  <title>初窥浏览器渲染过程和原理 | FeXiao's Blog</title>
+  <title>浏览器跨域 | FeXiao's Blog</title>
   
 
 
@@ -288,7 +292,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiao0502.github.io/2018/02/06/bowserPaint/">
+    <link itemprop="mainEntityOfPage" href="https://xiao0502.github.io/2018/03/02/cross-domain/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FeXiao">
@@ -305,7 +309,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">初窥浏览器渲染过程和原理</h1>
+          <h1 class="post-title" itemprop="name headline">浏览器跨域</h1>
         
 
         <div class="post-meta">
@@ -317,7 +321,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-06T12:12:42+08:00">2018-02-06</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-02T17:06:16+08:00">2018-03-02</time>
             
 
             
@@ -335,7 +339,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
               <span class="post-meta-item-text">字数统计：</span>
-              <span class="post-meta-item-text">722</span>
+              <span class="post-meta-item-text">563</span>
             </span>
             
             <span class="post-count">
@@ -344,7 +348,7 @@
                 <i class="fa fa-clock-o"></i>
               </span>
               <span class="post-meta-item-text">阅读时长：</span>
-              <span class="post-meta-item-text">3&nbsp;m</span>
+              <span class="post-meta-item-text">2&nbsp;m</span>
             </span>
             
           
@@ -376,8 +380,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/02/06/bowserPaint/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/02/06/bowserPaint/" itemprop="commentsCount"></span>
+                <a href="/2018/03/02/cross-domain/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/03/02/cross-domain/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -385,7 +389,7 @@
 
           
           
-             <span id="/2018/02/06/bowserPaint/" class="leancloud_visitors" data-flag-title="初窥浏览器渲染过程和原理">
+             <span id="/2018/03/02/cross-domain/" class="leancloud_visitors" data-flag-title="浏览器跨域">
               <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -418,49 +422,57 @@
 
       
         <blockquote>
-<p>了解浏览器的渲染过程和原理，有利于我们前端人员实现一些项目的具体优化方案，例如首屏渲染、按需加载等等；</p>
+<p>跨域是一种现象，一种问题。经常被很多面试官拿出来问，在开发中，和后台联调的时候，也是要解决问题中必不可少的步骤。<br>趁着最近有时间，可以拿出来好好说说，加深自己对跨域的理解，温故而知新。</p>
 </blockquote>
-<p>上一张图，先看为敬！</p>
-<p><img class="demoImg" src="http://p3idd1hk8.bkt.clouddn.com/renderTree.jpg"></p>
-<p>首先了解一个词，<code>关键渲染路径</code>，即与当前用户操作有关的内容，<br>最直接的体现就是<code>首屏渲染</code>。了解浏览器的渲染过程，<br>大部分就是为了优化关键渲染路径，避免长时间的白屏，提升用户体验；</p>
-<p>上个知识点《网页从开始请求到最终显示的完整过程》中说到过浏览器请求加载渲染一个页面的基本过程，精简下来，就是五个步骤：</p>
-<pre><code>1. DNS查询
-2. TCP连接
-3. HTTP请求
-4. 服务器响应
-5. 浏览器渲染
-</code></pre><p>这个知识点主要说第五个步骤，<code>浏览器渲染</code>，细分下来，也可以是补个步骤：</p>
-<pre><code>1. 处理HTML构建DOM树
-2. 处理CSS构建CSSOM树
-3. 将DOM和CSSOM合并成一个render（渲染树）
-4. 将render布局，计算每个节点的几何信息（Layout）
-5. 将节点绘制在屏幕上（Paint）
-</code></pre><p>要知道，上述的五个步骤不是一次性顺序进行，一旦DOM和CSSOM被修改，<br>就会重新计算并渲染（Repaint），<br>而在实际开发中，CSS和JS都是会经常修改DOM和CSSOM的。</p>
-<pre><code>CSS和JS都会阻塞DOM加载，一旦发生阻塞，解析器会停止构建DOM。
-CSS阻塞时，浏览器会延迟JS脚本执行和DOM构建，知道CSSOM构建完毕。
-JS阻塞时，DOM暂停构建，直至脚本执行完毕。
-</code></pre><p>所以在实际开发中，有<code>两个原则</code>：</p>
-<pre><code>1. CSS优先： CSS优先于JS资源
-2. JS尽量减少对DOM构建的影响
-</code></pre><p>这里对比下Repaint和Reflow,前者是元素的改变不影响布局，后者是布局被影响，渲染成本高</p>
-<p>有可能<code>触发Reflow的行为</code>：</p>
-<pre><code>1. 增删改DOM节点
-2. 增删class属性值
-3. 元素尺寸大小
-4. 文本内容大小
-5. 浏览器窗口改变大小或者拖动
-6. 动画效果
-7. 伪类
-</code></pre><p>在上述行为中，浏览器不是每次Reflow或者Repaint就立即执行，而是积累到一定时候，就会Reflow或者Repaint，<br>当然有些行为，比如改变浏览器窗口大小是立即执行Reflow或者Repaint的。</p>
-<p>说了上述些后，可以谈谈优化浏览器渲染过程的<code>具体实现</code>了。</p>
-<ol>
-<li>指定文档编码 <meta charset="utf-8"></li>
-<li>CSS放在 <code>&lt;head&gt;</code> 里面， js放在 <code>&lt;/body&gt;</code> 结束标签之前</li>
-<li>不要逐条修改CSS样式，提前定义好class样式，<code>对css进行操作</code></li>
-<li>CSS的引入利用 <code>媒体查询</code> ，接触对渲染的阻塞   </li>
-<li>JS的引入适当添加defer或者async,虽然都是 <code>异步加载</code> ，但是前者有序，后者无序</li>
-</ol>
+<h2 id="跨域是什么？为什么会出现跨域？"><a href="#跨域是什么？为什么会出现跨域？" class="headerlink" title="跨域是什么？为什么会出现跨域？"></a>跨域是什么？为什么会出现跨域？</h2><p><img class="demoImg" src="http://p3idd1hk8.bkt.clouddn.com/cross-domain.png"><br>一个完整的域名，包括了 <code>协议</code>、<code>域名</code>、<code>端口号</code>，任何一种不同，就是跨域的出现。<br>上图中的协议是<code>https</code>, 域名是<code>localhost</code>也就是<code>127.0.0.1</code>， 端口号是<code>8080</code><br>浏览器为了保护用户数据安全，防止恶意访问篡改做出的保护手段。</p>
+<h2 id="跨域出现了会有什么影响？"><a href="#跨域出现了会有什么影响？" class="headerlink" title="跨域出现了会有什么影响？"></a>跨域出现了会有什么影响？</h2><p>可以参考 阮一峰老师一篇文章 《浏览器同源政策及其规避方法》，这篇文章提到了，跨域后出现的限制</p>
+<pre><code>Cookie、LocalStorage 和 IndexDB 无法读取。
+DOM 无法获得。
+AJAX 请求不能发送。
+</code></pre><p>具体细节可以参考这篇文章 <a href="http://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html</a> </p>
+<h2 id="如何解决跨域？"><a href="#如何解决跨域？" class="headerlink" title="如何解决跨域？"></a>如何解决跨域？</h2><pre><code>JSONP
+nginx代理转发
+vue开发中proxyTable
+</code></pre><h4 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h4><blockquote>
+<p>JSONP解决跨域是以前一种比较旧的解决方案，而且只能支持get请求，目前基本上不太会用到这种方案了。</p>
+</blockquote>
+<p>JSONP主要是利用了script标签不受浏览器同源策略的影响的特点，动态添加script标签，自执行前后端约定好字段的函数，<br>从而获取数据，script加载的地址例如 <code>http://demo.com/callback=fn</code></p>
+<pre><code>var script = document.createElement(&#39;script);
+script.setAttribute(&#39;type&#39;,&#39;text/javascript&#39;);
+script.src = http://demo.com/callback=fn
+document.body.appendChild(script);
 
+function fn(data) {
+    console.log(JSON.stringify(data))
+}
+</code></pre><p>后台对应的会在所返回的json数据外面包裹fn</p>
+<pre><code>fn({
+    &quot;code&quot;: 0,
+    &quot;msg&quot;: &quot;请求成功&quot;
+})
+</code></pre><h4 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h4><blockquote>
+<p>nginx代理转发是我用得最多的解决跨域的方案了，简单粗暴还可行。</p>
+</blockquote>
+<p>接口地址</p>
+<p><img class="demoImg" src="http://p3idd1hk8.bkt.clouddn.com/api.png"> </p>
+<p>nginx修改代理</p>
+<p><img class="demoImg" src="http://p3idd1hk8.bkt.clouddn.com/changeApi.png"> </p>
+<p>这样所监听的端口发送请求时，nginx会把请求转发到接口地址 8088端口上</p>
+<p><img class="demoImg" src="http://p3idd1hk8.bkt.clouddn.com/8080.png"> </p>
+<p><img class="demoImg" src="http://p3idd1hk8.bkt.clouddn.com/request.png"> </p>
+<h4 id="vue中的proxyTable"><a href="#vue中的proxyTable" class="headerlink" title="vue中的proxyTable"></a>vue中的proxyTable</h4><blockquote>
+<p>用vue开发项目，自带的proxTable原理与ningx转发请求类似，不需要配置nginx，vue框架已经做好了处理。</p>
+</blockquote>
+<pre><code>  proxyTable: {
+        &#39;/api&#39;: {
+            target: &#39;http://localhost:8088&#39;,
+            changeOrigin: true,
+            pathRewrite: {
+                &#39;^/api&#39;: &#39;/api&#39;,
+            }
+        }
+    },
+</code></pre>
       
     </div>
     <div>
@@ -483,12 +495,12 @@ JS阻塞时，DOM暂停构建，直至脚本执行完毕。
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/2018/02/06/bowserPaint/">初窥浏览器渲染过程和原理</a></p>
+  <p><span>本文标题:</span><a href="/2018/03/02/cross-domain/">浏览器跨域</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 FeXiao 的个人博客">FeXiao</a></p>
-  <p><span>发布时间:</span>2018年02月06日 - 12:02</p>
-  <p><span>最后更新:</span>2018年02月06日 - 12:02</p>
-  <p><span>原始链接:</span><a href="/2018/02/06/bowserPaint/" title="初窥浏览器渲染过程和原理">https://xiao0502.github.io/2018/02/06/bowserPaint/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://xiao0502.github.io/2018/02/06/bowserPaint/"  aria-label="复制成功！"></i></span><span id="tips">复制成功</span>
+  <p><span>发布时间:</span>2018年03月02日 - 17:03</p>
+  <p><span>最后更新:</span>2018年03月02日 - 18:03</p>
+  <p><span>原始链接:</span><a href="/2018/03/02/cross-domain/" title="浏览器跨域">https://xiao0502.github.io/2018/03/02/cross-domain/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://xiao0502.github.io/2018/03/02/cross-domain/"  aria-label="复制成功！"></i></span><span id="tips">复制成功</span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎</a> 转载请保留原文链接及作者。</p>
 </div>
@@ -551,7 +563,7 @@ JS阻塞时，DOM暂停构建，直至脚本执行完毕。
       
         <div class="post-tags">
           
-            <a href="/tags/浏览器渲染/" rel="tag"># 浏览器渲染</a>
+            <a href="/tags/浏览器跨域/" rel="tag"># 浏览器跨域</a>
           
         </div>
       
@@ -564,8 +576,8 @@ JS阻塞时，DOM暂停构建，直至脚本执行完毕。
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/05/urlResolve/" rel="next" title="网页从开始请求到最终显示的完整过程">
-                <i class="fa fa-chevron-left"></i> 网页从开始请求到最终显示的完整过程
+              <a href="/2018/02/07/reactAccount/" rel="next" title="react实现简单登录注册">
+                <i class="fa fa-chevron-left"></i> react实现简单登录注册
               </a>
             
           </div>
@@ -573,10 +585,6 @@ JS阻塞时，DOM暂停构建，直至脚本执行完毕。
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/02/07/reactAccount/" rel="prev" title="react实现简单登录注册">
-                react实现简单登录注册 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -632,8 +640,17 @@ JS阻塞时，DOM暂停构建，直至脚本执行完毕。
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -743,6 +760,22 @@ JS阻塞时，DOM暂停构建，直至脚本执行完毕。
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#跨域是什么？为什么会出现跨域？"><span class="nav-number">1.</span> <span class="nav-text">跨域是什么？为什么会出现跨域？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#跨域出现了会有什么影响？"><span class="nav-number">2.</span> <span class="nav-text">跨域出现了会有什么影响？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何解决跨域？"><span class="nav-number">3.</span> <span class="nav-text">如何解决跨域？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#JSONP"><span class="nav-number">3.0.1.</span> <span class="nav-text">JSONP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#nginx"><span class="nav-number">3.0.2.</span> <span class="nav-text">nginx</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#vue中的proxyTable"><span class="nav-number">3.0.3.</span> <span class="nav-text">vue中的proxyTable</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
