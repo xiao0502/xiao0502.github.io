@@ -71,11 +71,11 @@
     color: red;
 }     
 
-:noly-child {
+:only-child {
     color: red
 } // 作用的元素父亲只有这个元素唯一一个元素
 
-:onli-of-type {
+:only-of-type {
     color: red;
 } // 作用的元素父亲只有这个元素唯一一个类型的元素
 </code></pre><h2 id="UI选择器（input）"><a href="#UI选择器（input）" class="headerlink" title="UI选择器（input）"></a>UI选择器（input）</h2><pre><code>input:enabled {
