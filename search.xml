@@ -3,6 +3,157 @@
   
     
     <entry>
+      <title><![CDATA[css选择器]]></title>
+      <url>/2018/03/04/css-select/</url>
+      <content type="html"><![CDATA[<blockquote>
+<p>关于css选择器，五花八门，别出心裁，总结下自己平时在工作中遇到的有用实际的一些css选择器吧。</p>
+</blockquote>
+<h2 id="属性选择器"><a href="#属性选择器" class="headerlink" title="属性选择器"></a>属性选择器</h2><pre><code>[href] {
+    color: red;
+} // 带href属性的标签
+
+[href^=&quot;http] {
+    color: red;
+} // 带href属性链接以http开头的
+
+[href$=&quot;.cn&quot;] {
+    color: red;
+} // 带href属性链接以.cn结尾的
+
+[type=&quot;password&quot;] {
+    color: red;
+} // 带type属性为password的
+
+[class~=&quot;xiao&quot;] {
+    color: red;
+} // 属性值具有多值时，使用如&lt;p class=&quot;xiao jin&quot;&gt;&lt;/p&gt;
+</code></pre><h2 id="复合选择器"><a href="#复合选择器" class="headerlink" title="复合选择器"></a>复合选择器</h2><h3 id="分组选择器"><a href="#分组选择器" class="headerlink" title="分组选择器"></a>分组选择器</h3><pre><code>.class1,
+.class2,
+.class3 {
+    color: red;
+}
+</code></pre><h3 id="后代选择器"><a href="#后代选择器" class="headerlink" title="后代选择器"></a>后代选择器</h3><pre><code>.class1 .class1-1 {
+    color: red;
+}
+</code></pre><h3 id="子选择器"><a href="#子选择器" class="headerlink" title="子选择器"></a>子选择器</h3><pre><code>.class1 &gt; .class2 {
+    color: red;
+}
+</code></pre><h3 id="相邻兄弟选择器"><a href="#相邻兄弟选择器" class="headerlink" title="相邻兄弟选择器"></a>相邻兄弟选择器</h3><pre><code>.class1 + .class2 {
+    color: red;
+}
+</code></pre><h3 id="兄弟选择器"><a href="#兄弟选择器" class="headerlink" title="兄弟选择器"></a>兄弟选择器</h3><pre><code>.class1 + .class2 {
+    color: red;
+}
+</code></pre><h2 id="伪元素选择器"><a href="#伪元素选择器" class="headerlink" title="伪元素选择器"></a>伪元素选择器</h2><pre><code>:first-line {
+    color: red;
+} // 作用于块级元素的首行
+
+:first-letter {
+
+} // 作用于块级元素的首字母
+
+:before {
+    content: &#39;&#39;;
+    display: block;
+    backgroud: red;
+} // 元素之前插入
+
+:before {
+    content: &#39;&#39;;
+    display: block;
+    backgroud: red;
+} // 元素之后插入
+</code></pre><h2 id="伪类选择器"><a href="#伪类选择器" class="headerlink" title="伪类选择器"></a>伪类选择器</h2><pre><code>:first-child {
+    color: red;
+}
+
+:last-child {
+    color: red;
+}     
+
+:noly-child {
+    color: red
+} // 作用的元素父亲只有这个元素唯一一个元素
+
+:onli-of-type {
+    color: red;
+} // 作用的元素父亲只有这个元素唯一一个类型的元素
+</code></pre><h2 id="UI选择器（input）"><a href="#UI选择器（input）" class="headerlink" title="UI选择器（input）"></a>UI选择器（input）</h2><pre><code>input:enabled {
+    font-size: 20px;
+}
+
+input:disable {
+    font-size: 20px;
+}
+
+input:checked {
+    font-size: 20px;
+}
+
+input:default {
+    font-size: 20px;
+}
+
+input:valid {
+    font-size: 20px;
+}
+
+input:invalid {
+    font-size: 20px;
+}
+
+input:required {
+    font-size: 20px;
+}
+</code></pre><h2 id="动态伪类"><a href="#动态伪类" class="headerlink" title="动态伪类"></a>动态伪类</h2><pre><code>:link {
+    color: red;
+}
+
+:visited {
+    color: red;
+}
+
+:hover {
+    color: red;
+}
+
+:active {
+    color: red;
+}
+
+:focus {
+    color: red;
+}
+</code></pre><h2 id="伪类其他"><a href="#伪类其他" class="headerlink" title="伪类其他"></a>伪类其他</h2><pre><code>:not {
+    color: red;
+} // 反选
+
+:empty {
+    color: red;
+} // 空内容
+
+:target {
+    color: red;   
+} // url中有target的
+</code></pre><p>PS： 回头补上以上选择器的兼容性！</p>
+]]></content>
+      
+        <categories>
+            
+            <category> css </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> css选择器 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[浏览器跨域]]></title>
       <url>/2018/03/02/cross-domain/</url>
       <content type="html"><![CDATA[<blockquote>
